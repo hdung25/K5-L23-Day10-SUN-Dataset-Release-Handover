@@ -1,0 +1,18 @@
+Hạng mục,Người kiểm,Xong?,Ghi chú
+,,Rồi,labcoach cho đặt tên tự do; repo public
+,,Rồi,# Day 10 Lab — Nhóm SUN
+"Validator chỉ đọc delivery/, chạy trên lô sạch không báo lỗi luật nào",ldmanh610,Rồi,"lô sạch 0 lỗi luật, 0 ứng viên"
+"Mọi lỗi gán nhãn trong errors.json có dòng confirmed trong review_log.csv, ghi rõ thấy gì",QuocAnh-bit,Rồi,3 seed: mọi lỗi gán nhãn có dòng confirmed (H3 PASS)
+"Có dòng rejected kèm lý do, hoặc REPORT.md giải thích ngưỡng đo trên lô sạch",manhtotbung,Rồi,mỗi seed có 3 dòng rejected kèm lý do
+"v1 giữ nguyên; v2 có manifest + sha256, label summary, truy vết, rework queue, README",MTrang0702,Rồi,"r2611, r101, r202 đều đủ 7 phần"
+Lineage có HOLD v1 và release v2 với parent,hdung25,Rồi,HOLD v1 + release v2 có parent cho cả 3 seed
+check_handover.py không còn FAIL (H1–H17),MTrang0702,Rồi,"17/17 PASS cả 3 seed, thử bằng clone sạch + --import như người chấm"
+"trace.json có tier_a, tier_b, notify (seed luyện tập và đề ẩn)",QuocAnh-bit,Chưa,"luyện tập xong (F1 1,0); còn đề ẩn"
+"security.md đủ ba mục, có tên ảnh cụ thể",MTrang0702,Rồi,"đủ 3 mục, ca khuôn mặt Hold + tên ảnh (H17 PASS)"
+export_submission.py đã chạy; submission/r<seed>/ đủ file; không commit .zip,hdung25,Rồi,"submission/r2611, r101, r202; không commit .zip"
+"submission/de_an/: errors.json, candidates.json, review_log.csv, trace.json; không commit delivery/",hdung25,Chưa,chờ đề ẩn
+"REPORT.md đủ 6 mục, dùng số thật",hdung25,Rồi,"6 mục, số thật; mục 5 của Quốc Anh"
+"prompts.md có prompt, chỗ AI sai, cách kiểm lại",hdung25,Rồi,"có dòng của Hiếu, Quốc Anh, Dũng; các bạn còn lại tự thêm"
+"TEAM.md đủ họ tên, MSHV, GitHub, phần chính, seed",hdung25,Rồi,đủ 6 người + MSHV + seed
+Mỗi người ít nhất 2 commit có nội dung,Cả nhóm,Chưa,"MTrang0702 và manhtotbung mới có 1 commit, cần thêm ít nhất 1 commit có nội dung"
+Đã nộp link repo lên LMS,hdung25,Chưa,sau khi xong đề ẩn

@@ -1,6 +1,7 @@
 # Công cụ của nhóm (ngoài validator)
 
 Chạy từ thư mục gốc repo. Windows: chạy `$env:PYTHONUTF8=1` một lần trong cửa sổ PowerShell trước.
+Dùng Python 3.11 hoặc 3.12 (`py -3.12`): Python 3.15 nén mask PNG khác byte nên `release_id` của lô tạo lại không khớp với lô của nhóm.
 
 | Công cụ | Việc | Thư viện |
 |---|---|---|

@@ -4,6 +4,12 @@
 
 # Day 10 Lab — Nhóm SUN
 
+> **Bài làm của nhóm SUN**
+> - Bảng phân công và theo dõi: [Google Sheet](https://docs.google.com/spreadsheets/d/1HsmcXXUwMi6U5iYGJdgPCHjrDczQjNvcDeE7YtsKsHc/edit?usp=drivesdk) · bản chụp trong repo: [docs/team_sheet/](docs/team_sheet/)
+> - Thành viên: [submission/TEAM.md](submission/TEAM.md) · báo cáo: [submission/REPORT.md](submission/REPORT.md) · dùng AI: [submission/prompts.md](submission/prompts.md)
+> - Bài nộp 3 seed luyện tập: [submission/r2611](submission/r2611), [submission/r101](submission/r101), [submission/r202](submission/r202) (mỗi seed `check_handover.py` 17/17 PASS, F1 tổng ≈ 1,0); đề ẩn: `submission/de_an/`
+> - Validator: [validator/validate.py](validator/validate.py) · công cụ và lệnh chạy (kể cả đề ẩn): [tools/README.md](tools/README.md)
+
 <p align="center">
   <img alt="nhóm" src="https://img.shields.io/badge/lab-nhóm%205–6%20người-0b1f3a">
   <img alt="thời lượng" src="https://img.shields.io/badge/thời%20lượng-~4%20giờ-ff8a3d">

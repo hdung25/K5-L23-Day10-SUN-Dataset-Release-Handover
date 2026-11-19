@@ -59,3 +59,4 @@ Cả ba seed đều qua `check_handover.py` 17/17 và được nộp trong `subm
 
 - Windows: `scripts/run_lab.py` gọi script con không kèm `-X utf8`, in tiếng Việt ra console cp1252 nên lỗi `UnicodeEncodeError` và để lại `runs/r<seed>` dở dang. Cách tránh: đặt `$env:PYTHONUTF8=1` trước khi chạy, xoá thư mục dở rồi chạy lại.
 - Lệch tự nhiên của COCO trong pool luyện tập lặp lại ở mọi seed (3 ca lệch box/segment và 5 ca nhãn kép), nên nhóm dùng việc "lặp lại ở seed khác" làm một bằng chứng phụ khi ghi `rejected`.
+- Phiên bản Python đổi byte của mask (Quốc Anh phát hiện): Python 3.15 nén PNG bằng zlib-ng nên `mask_sha256`, manifest và `release_id` của lô tạo lại khác với lô của nhóm (tạo bằng Python 3.11/3.12). Khi tạo lại lô để kiểm (`run_lab.py`, `export_submission.py --import`) nên dùng Python 3.11 hoặc 3.12, ví dụ `py -3.12`.

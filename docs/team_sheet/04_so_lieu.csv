@@ -1,0 +1,30 @@
+Chỉ số,Giá trị,Ai cập nhật,Ghi chú
+Seed luyện tập,2611,hdung25,Số nhóm × 1000 + 7
+Seed thêm 1 (test validator),101,ldmanh610,Tạo bằng inject_release.py
+Seed thêm 2 (test validator),202,ldmanh610,
+release_id v1,lab250_d9d3c58cd7e6,hdung25,Trong delivery/release.json
+"F1 lỗi luật, seed luyện tập",1,ldmanh610,"score_findings.py, mục rule_detectable"
+"F1 lỗi luật, seed thêm 1",1,ldmanh610,
+"F1 lỗi luật, seed thêm 2",1,ldmanh610,
+Số lỗi luật validator báo trên lô sạch,0,ldmanh610,Phải bằng 0
+Số ứng viên trên lô sạch,0,manhtotbung,Ghi kèm ngưỡng đã dùng
+Ngưỡng ghép đã chọn,segment ≥ 98% pixel trong box cùng lớp; segment ≥ 300 px; box-side không giới hạn,manhtotbung,Lý do ghi ở REPORT.md mục 1
+Số ứng viên trên seed luyện tập,9,manhtotbung,
+Số dòng confirmed,19,,Tự đếm từ tab Review ảnh
+Số dòng rejected,9,,Tự đếm từ tab Review ảnh
+"F1 cross_check_review, seed luyện tập",0.9,QuocAnh-bit,Sau merge_review.py
+"F1 tổng, seed luyện tập",1,QuocAnh-bit,
+F1 truy vết (tier_a / tier_b / notify),"1,0 / 1,0 / 1,0",QuocAnh-bit,
+Số mục trong errors.json v1,15,hdung25,Mỗi scene_leak tính 1 ảnh
+Tổng ảnh v1,250,,Cố định theo đề
+Ngưỡng Release (Day 7),0.02,,Trên ngưỡng thì không Release
+Tỉ lệ lỗi v1,0.06,,Tự tính
+Kết luận v1,HOLD,,Tự tính; phải khớp lineage
+Số ảnh trong v2,243,MTrang0702,Khớp README.txt
+Số nhãn trong v2,1685,MTrang0702,Khớp label_summary.csv TOTAL
+Số ảnh trong rework_queue.csv,7,MTrang0702,
+"Ô nền vàng: người phụ trách điền số thật từ máy. Ô không tô màu là công thức, không gõ đè.",,,
+Seed 101: F1 luật / gán nhãn / tổng,"1,0 / 0,9 / 1,0",hdung25,"8 ứng viên (5 confirmed); QC v1 19/250 = 7,6% => HOLD; 17/17 PASS"
+Seed 202: F1 luật / gán nhãn / tổng,"1,0 / 0,9 / 1,0",hdung25,"11 ứng viên (8 confirmed); QC v1 21/250 = 8,4% => HOLD; 17/17 PASS"
+"Mô phỏng đề ẩn h302 (opaque, mức khó): F1 luật / gán nhãn / tổng","1,0 / 0,9 / 1,0",hdung25,"15 ứng viên, review ~15 phút; truy vết 1,0"
+"Mô phỏng đề ẩn o301, h303: F1 luật","1,0 / 1,0",hdung25,chưa review ảnh

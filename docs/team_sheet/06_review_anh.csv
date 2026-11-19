@@ -1,0 +1,31 @@
+Lô,image,type,Người xem,verdict,"note (thấy gì trong ảnh, ≥ 20 ký tự)",Ghi chú thêm
+VÍ DỤ,000000999007,class_swap,hdung25,confirmed,"mở ảnh: xe tải mui kín, nhãn detection ghi car; panoptic ghi truck đúng","Dòng mẫu, xoá khi gộp"
+VÍ DỤ,000000999009,bbox_drift,hdung25,rejected,box lệch mask do vật bị che một phần; nhãn hợp lý,"Dòng mẫu, xoá khi gộp"
+Luyện tập,000000000872,bbox_drift,hdung25,rejected,"hai cầu thủ chồng lên nhau, box person bao cả người chạy phía trước, chỉ hụt mũi giày ở mép dưới; ca này lặp lại y hệt ở seed 101 và 202 nên là lệch sẵn có của COCO, không phải lỗi gài",Nhánh full-pipeline
+Luyện tập,000000001675,class_swap,hdung25,confirmed,"con mèo đen trắng nằm trên laptop, segment panoptic ghi cat đúng; box detection cùng vị trí lại ghi donut nên detection sai",Nhánh full-pipeline
+Luyện tập,000000001818,bbox_drift,hdung25,rejected,"ngựa vằn mẹ to phủ gần hết khung hình, box zebra chỉ bao phần bên phải quanh con non; ca này lặp lại ở seed 101 và 202 nên là lệch sẵn có của COCO",Nhánh full-pipeline
+Luyện tập,000000005001,category_swap,hdung25,confirmed,"mở crop: segment là người phụ nữ đội mũ len đỏ đeo kính trong đám đông, panoptic ghi keyboard; detection ghi person đúng",Nhánh full-pipeline
+Luyện tập,000000011699,missing_box,hdung25,confirmed,"cô gái áo xanh đeo túi xách hoa chéo vai bên phải, segment handbag rõ ràng nhưng không có box handbag nào quanh túi; box handbag duy nhất nằm bên trái ở người khác",Nhánh full-pipeline
+Luyện tập,000000012748,bbox_drift,hdung25,rejected,"người đàn ông bế em bé cạnh con ngựa, đầu anh ấy nhô ra trên box person; ca này lặp lại ở seed 101 và 202 nên là lệch sẵn có của COCO, không phải lỗi gài",Nhánh full-pipeline
+Luyện tập,000000018770,category_swap,hdung25,confirmed,"ảnh cận áo vest, vật trong segment là cà vạt hoa văn xanh đen; panoptic ghi train là sai, detection ghi tie đúng",Nhánh full-pipeline
+Luyện tập,000000020247,bbox_drift,hdung25,confirmed,"con gấu nâu đi về phía máy ảnh, box bear lệch sang phải và lên trên: hụt nửa trái thân và cả hai chân trước",Nhánh full-pipeline
+Luyện tập,000000025057,instance_merge,hdung25,confirmed,"segment của người đàn ông cởi trần cầm đĩa bay chứa luôn pixel của người nhỏ đứng xa bên trái; box person của người nhỏ không còn segment nào, tức hai người bị gộp thành một segment panoptic",Nhánh full-pipeline
+Luyện tập,000000000872,missing_box,hdung25,rejected,"hai cầu thủ bóng chày chồng lên nhau, box person chỉ hụt mũi giày; ca này giống hệt ở seed 2611 và 202 nên là lệch sẵn có của COCO","seed 101, nhánh full-pipeline"
+Luyện tập,000000001818,missing_box,hdung25,rejected,"ngựa vằn mẹ phủ gần hết khung hình cạnh con non, box zebra chỉ bao bên phải; lặp lại ở seed 2611 và 202, lệch sẵn có của COCO","seed 101, nhánh full-pipeline"
+Luyện tập,000000006213,instance_merge,hdung25,confirmed,"phòng tắm có hai bồn rửa trên cùng một bệ gỗ, một segment sink phủ cả bồn trái lẫn bồn phải, hai bồn bị gộp thành một segment","seed 101, nhánh full-pipeline"
+Luyện tập,000000010583,missing_box,hdung25,confirmed,"món thịt sốt có phần lát cà chua và hành ở trên cùng: segment sandwich riêng cho phần này nhưng box sandwich duy nhất chỉ ôm phần dưới, phần trên không có box","seed 101, nhánh full-pipeline"
+Luyện tập,000000012670,category_swap,hdung25,confirmed,"túi màu xanh đen đeo trên lưng có hai quai vắt qua vai người trong đám đông, là ba lô: detection ghi backpack đúng, panoptic ghi handbag sai","seed 101, nhánh full-pipeline"
+Luyện tập,000000012748,missing_box,hdung25,rejected,"người đàn ông bế em bé cạnh con ngựa, đầu nhô khỏi box person; lặp lại ở seed 2611 và 202 nên là lệch sẵn có của COCO","seed 101, nhánh full-pipeline"
+Luyện tập,000000017207,class_swap,hdung25,confirmed,"xe máy bị che một phần ở mép trái ảnh sau xe buýt vàng, panoptic ghi motorcycle đúng; box detection ghi cup là sai","seed 101, nhánh full-pipeline"
+Luyện tập,000000018575,category_swap,hdung25,confirmed,"đĩa sứ trắng đựng salad, cà chua, chanh và hũ sốt, detection ghi bowl hợp lý; panoptic ghi cup là sai","seed 101, nhánh full-pipeline"
+Luyện tập,000000000872,missing_box,hdung25,rejected,"hai cầu thủ bóng chày chồng lên nhau, box person chỉ hụt mũi giày; giống hệt ở seed 2611 và 101, lệch sẵn có của COCO","seed 202, nhánh full-pipeline"
+Luyện tập,000000001584,bbox_drift,hdung25,confirmed,"xe buýt tối màu phía sau xe buýt hai tầng đỏ: phần đầu xe lộ ra bên trái nằm ngoài box bus, box bị dịch sang phải","seed 202, nhánh full-pipeline"
+Luyện tập,000000001818,missing_box,hdung25,rejected,ngựa vằn mẹ phủ gần hết khung hình cạnh con non; lặp lại ở seed 2611 và 101 nên là lệch sẵn có của COCO,"seed 202, nhánh full-pipeline"
+Luyện tập,000000006471,class_swap,hdung25,confirmed,"băng ghế dài trong khu dự bị phía sau sân bóng chày, panoptic ghi bench đúng; box detection ghi chair là sai","seed 202, nhánh full-pipeline"
+Luyện tập,000000008277,bbox_drift,hdung25,confirmed,"hộp nhựa đen đựng súp lơ xanh: một miếng súp lơ có segment lấn ra ngoài phía trên bên trái box broccoli của nó, box bị lệch","seed 202, nhánh full-pipeline"
+Luyện tập,000000011511,missing_box,hdung25,confirmed,"người đội mũ trùm áo đen đứng nép sau cột đèn bên trái tượng, có segment person rõ ràng nhưng không có box person nào","seed 202, nhánh full-pipeline"
+Luyện tập,000000012748,missing_box,hdung25,rejected,"người đàn ông bế em bé cạnh con ngựa, đầu nhô khỏi box; lặp lại ở seed 2611 và 101, lệch sẵn có của COCO","seed 202, nhánh full-pipeline"
+Luyện tập,000000013659,category_swap,hdung25,confirmed,"laptop nhỏ màn hình xanh trên bàn làm việc, người đang gõ phím; detection ghi laptop đúng, panoptic ghi tv sai","seed 202, nhánh full-pipeline"
+Luyện tập,000000015079,missing_box,hdung25,confirmed,"đĩa có hai nửa bánh mì kẹp mứt: nửa phía sau có segment sandwich nhưng box sandwich duy nhất ôm nửa phía trước, nửa sau không có box","seed 202, nhánh full-pipeline"
+Luyện tập,000000020059,instance_merge,hdung25,confirmed,"hai con ngựa vằn đang gặm cỏ cách xa nhau, một segment zebra phủ cả hai con nên hai vật bị gộp thành một","seed 202, nhánh full-pipeline"
+Luyện tập,000000022755,class_swap,hdung25,confirmed,"xe buýt trường học màu vàng phản chiếu trong gương chiếu hậu, panoptic ghi bus đúng; box detection ghi truck sai","seed 202, nhánh full-pipeline"
