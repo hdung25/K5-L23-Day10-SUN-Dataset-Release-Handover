@@ -63,16 +63,37 @@ Cả ba seed đều qua `check_handover.py` 17/17 và được nộp trong `subm
 
 ## 6. Bug hoặc điểm chưa rõ trong lab
 
-## 7. Đề ẩn
-
-Nhóm làm 4 mã đề (de_an_02 đến de_an_05, tải từ thư mục đề của lớp), mỗi đề một thư mục `submission/de_an_XX/`; `submission/de_an/` là bản nộp chính, chép từ **de_an_03** vì mọi ca gán nhãn ở đề này đều nhìn rõ trên ảnh.
-
-| Đề | Lỗi luật | Ứng viên | Confirmed / rejected | Lớp đổi quy tắc | tier_a / tier_b / notify |
-|---|---|---|---|---|---|
-| de_an_02 | 10 | 13 | 12 / 1 | dog | 2 / 4 / 3 người |
-| de_an_03 | 10 | 9 | 9 / 0 | book | 3 / 3 / 5 người |
-| de_an_04 | 10 | 13 | 9 / 4 | cell phone | 3 / 5 / 6 người |
-| de_an_05 | 7 | 7 | 6 / 1 | fork | 2 / 4 / 5 người |
-
-- Ảnh đề ẩn bị lật ngang và nén lại, tên ảnh mã hoá; validator không phụ thuộc chiều ảnh hay tên nên chạy nguyên như lô luyện tập.
-- Các ca `rejected` đều là box COCO gán hai nhãn cho cùng một vật (chair + bench, suitcase + handbag, remote + cell phone) hoặc box đã được tính trong một ca lệch lớp. Sau khi xem ảnh, nhóm thêm vào validator luật bỏ box nhãn kép; chạy lại trên 3 seed luyện tập và lô sạch thì không mất ứng viên thật nào.
+## 7. Đề ẩn
+
+
+
+Nhóm làm 4 mã đề (de_an_02 đến de_an_05, tải từ thư mục đề của lớp), mỗi đề một thư mục `submission/de_an_XX/`; `submission/de_an/` là bản nộp chính, chép từ **de_an_03** vì mọi ca gán nhãn ở đề này đều nhìn rõ trên ảnh.
+
+
+
+| Đề | Lỗi luật | Ứng viên | Confirmed / rejected | Lớp đổi quy tắc | tier_a / tier_b / notify |
+
+|---|---|---|---|---|---|
+
+| de_an_02 | 10 | 13 | 12 / 1 | dog | 2 / 4 / 3 người |
+
+| de_an_03 | 10 | 9 | 9 / 0 | book | 3 / 3 / 5 người |
+
+| de_an_04 | 10 | 13 | 9 / 4 | cell phone | 3 / 5 / 6 người |
+
+| de_an_05 | 7 | 7 | 6 / 1 | fork | 2 / 4 / 5 người |
+
+
+
+- Ảnh đề ẩn bị lật ngang và nén lại, tên ảnh mã hoá; validator không phụ thuộc chiều ảnh hay tên nên chạy nguyên như lô luyện tập.
+
+- Các ca `rejected` đều là box COCO gán hai nhãn cho cùng một vật (chair + bench, suitcase + handbag, remote + cell phone) hoặc box đã được tính trong một ca lệch lớp. Sau khi xem ảnh, nhóm thêm vào validator luật bỏ box nhãn kép; chạy lại trên 3 seed luyện tập và lô sạch thì không mất ứng viên thật nào.
+
+**Đã nộp lên trang chấm** (tên team trên trang: `NHOM99`, vì trang bắt buộc dạng `NHOMxx`): 4 lượt, mỗi mã đề một file `de_an_NN__NHOM99.zip` chứa `submission/de_an/{errors.json, review_log.csv, trace.json, candidates.json}`; cả 4 lượt đều chấm xong (`status: done`), còn 1–2 lượt dự phòng. Trang chỉ công bố thứ hạng, không công bố điểm.
+
+| Mã đề | Mã nhận bài |
+|---|---|
+| de_an_03 | `bdab0a0f03df627361c2b364d1ec883f` |
+| de_an_02 | `33b25a977097c8f7e6d6aa4bf6faaa90` |
+| de_an_04 | `c8e1ef6117dbd1869f8733c1b95baf4e` |
+| de_an_05 | `4818fc29f28488d2c1f85897131b5ef3` |

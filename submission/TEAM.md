@@ -1,5 +1,6 @@
 # Nhóm SUN
 
+- Tên team trên trang nộp đề ẩn: `NHOM99` (trang bắt buộc dạng NHOMxx)
 - Seed luyện tập: 2611 (`runs/r2611`, release_id v1 `lab250_d9d3c58cd7e6`)
 - Repo: https://github.com/hdung25/K5-L23-Day10-SUN-Dataset-Release-Handover
 - Bảng phân công và theo dõi tiến độ: [Day 10 Lab - Phân công nhóm](https://docs.google.com/spreadsheets/d/1HsmcXXUwMi6U5iYGJdgPCHjrDczQjNvcDeE7YtsKsHc/edit?usp=drivesdk)

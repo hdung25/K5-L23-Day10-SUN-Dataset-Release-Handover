@@ -2,7 +2,7 @@
 
 Bản gốc (ai có link đều sửa được): **[Day 10 Lab - Phân công nhóm](https://docs.google.com/spreadsheets/d/1HsmcXXUwMi6U5iYGJdgPCHjrDczQjNvcDeE7YtsKsHc/edit?usp=drivesdk)**
 
-Thư mục này là bản chụp nội dung sheet lúc 19/11 18:23, mỗi tab một file CSV (GitHub hiển thị thành bảng). Ô tích được ghi là `x`.
+Thư mục này là bản chụp nội dung sheet lúc 19/11 18:54, mỗi tab một file CSV (GitHub hiển thị thành bảng). Ô tích được ghi là `x`.
 
 | Tab | File | Nội dung |
 |---|---|---|

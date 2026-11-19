@@ -1,7 +1,7 @@
 GitHub,Đã tải dữ liệu,Đã tạo lô r2611,release_id v1 trên máy (dán vào),Khớp lô nhóm?,Đã điền MSHV,Số commit có nội dung,Xem xong ảnh P2,Đã ghi prompts.md,Đã ôn vấn đáp,Ghi chú / lỗi gặp phải
 hdung25,x,x,lab250_d9d3c58cd7e6,Khớp,x,0,,,,
 hieuwewe123,,,,,x,0,,,,
-ldmanh610,,,,,x,0,,,,
+ldmanh610,x,x,,,x,0,,,,
 manhtotbung,x,x,lab250_d9d3c58cd7e6,Khớp,x,0,,,,
 QuocAnh-bit,x,x,lab250_d9d3c58cd7e6,Khớp,x,4,x,x,x,"Đã tải xong coco250 + calib, chạy r2611, xuất 9 ảnh review_img bằng view_candidates.py, chạy trace_query.py + score_findings.py (F1 tổng ≈ 1.0, truy vết 1.0/1.0/1.0). Lưu ý: trên Windows nếu mặc định Python 3.15 (dùng zlib-ng) thì mask_sha256 khác Python 3.12, cần gọi py -3.12 để ra đúng release_id lab250_d9d3c58cd7e6."
-MTrang0702,x,x,lab250_d9d3c58cd7e6,Khớp,x,2,x,x,x,"Đã hoàn thành P4 (make_handover_v2.py, README, label_summary, rework_queue, truyvet), Mục 4 REPORT.md, security.md (H17 HOLD ca khuôn mặt), unit test tests/test_handover.py, 17/17 PASS check_handover.py. Đã push 2 commit có nội dung: b961723 và 4ba9c78."
+MTrang0702,,,,,x,0,,,,
