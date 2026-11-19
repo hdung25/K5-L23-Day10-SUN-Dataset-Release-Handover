@@ -8,7 +8,7 @@
 |---|---|---|---|
 | <<>> | <<>> | hdung25 | Trưởng nhóm: chuẩn bị (P0), quyết định + lineage (P3), tích hợp, đề ẩn, nộp bài |
 | Trieu Hoang Hieu | <<>> | hieuwewe123 | Validator luật: khung `validate.py`, lỗi file và detection (`missing_image`, `wrong_hash`, `invalid_class`, `bbox_out_of_bounds`, `duplicate_box`) |
-| <<>> | <<>> | ldmanh610 | Validator luật: metadata và panoptic (`scene_leak`, `guideline_mismatch`, `invalid_category_id`, `thing_overlap`); kiểm F1 trên nhiều seed và lô sạch |
+| Luong Duc Manh | <<>> | ldmanh610 | Validator luật: metadata và panoptic (`scene_leak`, `guideline_mismatch`, `invalid_category_id`, `thing_overlap`); kiểm F1 trên nhiều seed và lô sạch |
 | Do Phuong Manh | <<>> | manhtotbung | Đối chiếu detection ↔ panoptic, sinh `candidates.json`, đo lô sạch và chọn ngưỡng |
 | Quốc Anh | <<>> | QuocAnh-bit | Công cụ xem ảnh, chia hàng đợi và gộp `review_log.csv`, truy vết ticket (`trace.json`) |
 | Nguyen Thi Minh Trang | 2A202603107 | MTrang0702 | Bàn giao lô v2 (rework, manifest, label summary, truyvet, README, đóng gói), bảo mật (`security.md`) |
