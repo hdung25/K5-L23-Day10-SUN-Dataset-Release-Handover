@@ -1,0 +1,3 @@
+# Bài nộp phải giữ đúng từng byte: sha256 trong manifest.csv và .sha256 tính trên file LF.
+# Không cho git đổi LF <-> CRLF khi checkout trên Windows.
+submission/** -text
