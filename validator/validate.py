@@ -164,13 +164,25 @@ def panoptic_rule_error(annotation, category_ids, segments):
 
 
 # ------------------------------------------------------------------ cross-check
+#
+# Đối chiếu detection (box YOLO) với panoptic (mask) của CÙNG một ảnh. Không có nhãn gốc,
+# nên nguồn nhãn này là "đáp án" để soi nguồn kia. Ý chính:
+#   - Panoptic của COCO sinh từ cùng polygon với box, chỉ bỏ bớt pixel bị vật khác che.
+#     Vì vậy với một cặp đúng, gần như 100% pixel của segment nằm trong box cùng lớp
+#     (trên lô sạch: 435/436 segment có tỉ lệ >= 0,999).
+#   - Ta đo "share_inside" = tỉ lệ pixel segment nằm trong box, thay vì IoU giữa hai bbox:
+#     IoU cao vẫn có thể giấu một phần nhỏ bị gộp (ca 000000025057: IoU 0,9 nhưng 2,4%
+#     pixel nằm ngoài box chính là người nhỏ bị gộp vào).
+#   - Mọi kết quả ở đây chỉ là ỨNG VIÊN: phải mở ảnh xem rồi mới ghi confirmed/rejected.
 
 def box_pixels(box, width, height):
+    """YOLO (class, x_center, y_center, w, h) chuẩn hoá 0-1 -> góc (x0, y0, x1, y1) theo pixel."""
     _, x, y, w, h = box
     return (x - w / 2) * width, (y - h / 2) * height, (x + w / 2) * width, (y + h / 2) * height
 
 
 def iou(a, b):
+    """IoU của hai hình chữ nhật (x0, y0, x1, y1); chỉ dùng phụ, quyết định chính theo pixel."""
     ix = max(0.0, min(a[2], b[2]) - max(a[0], b[0]))
     iy = max(0.0, min(a[3], b[3]) - max(a[1], b[1]))
     inter = ix * iy
@@ -183,6 +195,8 @@ def share_inside(indices, width, rect):
     x0, y0, x1, y1 = rect
     inside = 0
     for index in indices:
+        # index là vị trí phẳng trong mask: cột = index % width, hàng = index // width.
+        # +0.5 lấy tâm pixel; nới 1 pixel mỗi phía vì toạ độ YOLO đã làm tròn 6 chữ số.
         px, py = index % width + 0.5, index // width + 0.5
         if x0 - 1 <= px <= x1 + 1 and y0 - 1 <= py <= y1 + 1:
             inside += 1
@@ -223,17 +237,24 @@ def cross_check(image, boxes, classes, annotation, categories, segments, width, 
             continue
         bbox = pixel_bbox(indices, width)
         for d in dets:
-            if d["name"] == category["name"] and iou(bbox, d["rect"]) >= 0.5                     and share_inside(indices, width, d["rect"]) >= SHARE_OK:
+            if (d["name"] == category["name"] and iou(bbox, d["rect"]) >= 0.5
+                    and share_inside(indices, width, d["rect"]) >= SHARE_OK):
                 owner.setdefault(d["index"], info["id"])
     candidates = []
+    # Vòng 1 - phía segment: mỗi segment thing (không crowd, đủ lớn) phải có box cùng lớp
+    # chứa >= SHARE_OK pixel của nó. Không có thì xét lần lượt 4 dấu hiệu bên dưới.
     for info in annotation["segments_info"]:
         category = categories.get(info["category_id"])
         indices = segments.get(info["id"])
+        # Bỏ stuff (trời, cỏ...), crowd (COCO không có box YOLO cho crowd) và category_id lạ
+        # (đã là lỗi luật invalid_category_id).
         if category is None or not category["isthing"] or info.get("iscrowd") or not indices:
             continue
         if len(indices) < MIN_AREA:
-            continue
+            continue  # < 300 pixel: quá ít để kết luận, vòng 2 (phía box) sẽ lo vật nhỏ
         name, bbox = category["name"], pixel_bbox(indices, width)
+        # same: các box cùng lớp, xếp theo tỉ lệ pixel segment nằm trong box (cao -> thấp).
+        # Mỗi phần tử là (share_inside, iou, box).
         same = sorted(((share_inside(indices, width, d["rect"]), iou(bbox, d["rect"]), d)
                        for d in dets if d["name"] == name), key=lambda t: -t[0])
         if same and same[0][0] >= SHARE_OK:
@@ -277,6 +298,9 @@ def cross_check(image, boxes, classes, annotation, categories, segments, width, 
         candidates.append({**base, "type": "missing_box",
                            "reason": "segment thing không có box nào cùng lớp"})
 
+    # Vòng 2 - phía box, không giới hạn kích thước: mỗi box detection phải chứa trọn một
+    # segment cùng lớp. Bắt vật nhỏ mà vòng 1 bỏ qua (MIN_AREA) và swap trên vật bị che.
+    # Segment nào vòng 1 đã báo (flagged) thì không báo lại.
     # Box side, no size limit: every detection box should hold a segment of its class.
     # Catches small objects the segment pass skips (MIN_AREA) and swaps on occluded objects.
     flagged = {c["segment_id"] for c in candidates}
