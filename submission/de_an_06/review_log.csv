@@ -1,0 +1,13 @@
+image,type,verdict,note
+img_0003,category_swap,confirmed,"bánh bông lan vòng phủ kem trắng đã cắt lát cạnh ngọn nến đỏ, detection ghi cake đúng; panoptic ghi donut là sai"
+img_0014,bbox_drift,rejected,"khay nhiều xúc xích hot dog chồng lên nhau: box hot dog mỏng này nằm giữa hai chiếc đã có segment riêng, là chiếc bị che hết trong panoptic chứ không phải box lệch"
+img_0018,category_swap,confirmed,"người đàn ông tóc dài cởi trần quần đen đang ném đĩa bay đỏ, detection ghi person đúng; panoptic ghi toilet là sai"
+img_0085,class_swap,confirmed,"bánh sinh nhật phủ kem trắng có tượng gấu nhỏ trên tay người phụ nữ, panoptic ghi cake đúng; box detection ghi donut sai"
+img_0091,bbox_drift,confirmed,"xe con màu đen đỗ ở góc phải trong mưa: bánh trước và cản dưới nằm ngoài box car, box bị dịch lên trên"
+img_0093,bbox_drift,confirmed,"con bê lông sáng nhìn thẳng ống kính: phần thân dưới bên trái và tai phải lòi ra ngoài box cow, box lệch sang phải và lên trên"
+img_0182,bbox_drift,confirmed,"cột đồng hồ đỗ xe đen ở giữa vỉa hè: chóp trên của đồng hồ nằm ngoài box parking meter, box bị kéo xuống phần cột"
+img_0193,class_swap,confirmed,"con diều nhiều màu có đuôi dài bay trên trời phía trên cậu bé tóc đỏ, panoptic ghi kite đúng; box detection ghi bird sai"
+img_0197,missing_box,confirmed,"chú chó đen vàng ngậm đĩa bay cam trên bãi cỏ, có segment dog nhưng chỉ có box frisbee, không có box dog"
+img_0224,instance_merge,confirmed,"một segment horse phủ cả con ngựa xám ở mép trái lẫn con ngựa nâu nhỏ ở xa bên phải, hai con bị gộp thành một"
+img_0235,class_swap,confirmed,"phóng to và tăng sáng: con vật nằm cạnh người đang ngủ có tai nhọn tam giác lòng hồng, mặt ngắn, là mèo; panoptic ghi cat đúng, box ghi dog sai"
+img_0247,instance_merge,confirmed,"thớt rau có hai củ cà rốt có box riêng nằm cạnh nhau, một segment carrot phủ cả củ trên ngắn lẫn củ dài bên dưới"

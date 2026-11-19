@@ -1,0 +1,214 @@
+{
+  "candidates": [
+    {
+      "image": "img_0003",
+      "seg_class": "donut",
+      "segment_id": 8091175,
+      "area": 124361,
+      "seg_bbox": [
+        180,
+        1,
+        639,
+        344
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'cake' trùng vị trí segment 'donut'",
+      "det_class": "cake",
+      "box_index": 0,
+      "iou": 0.998
+    },
+    {
+      "image": "img_0014",
+      "type": "bbox_drift",
+      "reason": "box lệch: một phần segment cùng lớp nằm ngoài box",
+      "seg_class": "hot dog",
+      "segment_id": 13377605,
+      "area": 289,
+      "seg_bbox": [
+        282,
+        415,
+        330,
+        427
+      ],
+      "box_index": 15,
+      "share_inside": 0.564
+    },
+    {
+      "image": "img_0018",
+      "seg_class": "toilet",
+      "segment_id": 9613474,
+      "area": 21216,
+      "seg_bbox": [
+        139,
+        67,
+        325,
+        330
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'person' trùng vị trí segment 'toilet'",
+      "det_class": "person",
+      "box_index": 0,
+      "iou": 0.996
+    },
+    {
+      "image": "img_0085",
+      "seg_class": "cake",
+      "segment_id": 4453713,
+      "area": 5507,
+      "seg_bbox": [
+        101,
+        113,
+        221,
+        203
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'donut' trùng vị trí segment 'cake'",
+      "det_class": "donut",
+      "box_index": 6,
+      "iou": 0.991
+    },
+    {
+      "image": "img_0091",
+      "seg_class": "car",
+      "segment_id": 6449663,
+      "area": 16494,
+      "seg_bbox": [
+        471,
+        119,
+        640,
+        255
+      ],
+      "type": "bbox_drift",
+      "reason": "box cùng lớp lệch khỏi segment",
+      "box_index": 2,
+      "share_inside": 0.975,
+      "iou": 0.739
+    },
+    {
+      "image": "img_0093",
+      "seg_class": "cow",
+      "segment_id": 2661924,
+      "area": 52699,
+      "seg_bbox": [
+        304,
+        131,
+        637,
+        426
+      ],
+      "type": "bbox_drift",
+      "reason": "box cùng lớp lệch khỏi segment",
+      "box_index": 2,
+      "share_inside": 0.956,
+      "iou": 0.875
+    },
+    {
+      "image": "img_0182",
+      "seg_class": "parking meter",
+      "segment_id": 10454065,
+      "area": 10736,
+      "seg_bbox": [
+        380,
+        228,
+        458,
+        404
+      ],
+      "type": "bbox_drift",
+      "reason": "box cùng lớp lệch khỏi segment",
+      "box_index": 4,
+      "share_inside": 0.976,
+      "iou": 0.639
+    },
+    {
+      "image": "img_0193",
+      "type": "class_swap|category_swap",
+      "reason": "box 'bird' không chứa segment cùng lớp, chỉ chứa segment 'kite'",
+      "seg_class": "kite",
+      "det_class": "bird",
+      "segment_id": 85938,
+      "area": 246,
+      "seg_bbox": [
+        131,
+        102,
+        159,
+        151
+      ],
+      "box_index": 1,
+      "iou": 0.994
+    },
+    {
+      "image": "img_0197",
+      "seg_class": "dog",
+      "segment_id": 7885187,
+      "area": 64386,
+      "seg_bbox": [
+        115,
+        18,
+        567,
+        421
+      ],
+      "type": "missing_box",
+      "reason": "segment thing không có box nào cùng lớp"
+    },
+    {
+      "image": "img_0224",
+      "seg_class": "horse",
+      "segment_id": 4998332,
+      "area": 30869,
+      "seg_bbox": [
+        0,
+        169,
+        637,
+        462
+      ],
+      "type": "instance_merge",
+      "reason": "một segment nằm trong hai box cùng lớp",
+      "box_indexes": [
+        1,
+        2
+      ],
+      "shares": [
+        0.934,
+        0.066
+      ]
+    },
+    {
+      "image": "img_0235",
+      "seg_class": "cat",
+      "segment_id": 1040193,
+      "area": 39096,
+      "seg_bbox": [
+        17,
+        223,
+        460,
+        370
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'dog' trùng vị trí segment 'cat'",
+      "det_class": "dog",
+      "box_index": 0,
+      "iou": 0.996
+    },
+    {
+      "image": "img_0247",
+      "seg_class": "carrot",
+      "segment_id": 12172114,
+      "area": 7038,
+      "seg_bbox": [
+        428,
+        181,
+        486,
+        420
+      ],
+      "type": "instance_merge",
+      "reason": "một segment nằm trong hai box cùng lớp",
+      "box_indexes": [
+        2,
+        3
+      ],
+      "shares": [
+        0.834,
+        0.447
+      ]
+    }
+  ]
+}

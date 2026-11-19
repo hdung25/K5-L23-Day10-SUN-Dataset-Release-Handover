@@ -67,7 +67,7 @@ Cả ba seed đều qua `check_handover.py` 17/17 và được nộp trong `subm
 
 
 
-Nhóm làm 4 mã đề (de_an_02 đến de_an_05, tải từ thư mục đề của lớp), mỗi đề một thư mục `submission/de_an_XX/`; `submission/de_an/` là bản nộp chính, chép từ **de_an_03** vì mọi ca gán nhãn ở đề này đều nhìn rõ trên ảnh.
+Nhóm làm 5 mã đề (de_an_02 đến de_an_06, tải từ thư mục đề của lớp), mỗi đề một thư mục `submission/de_an_XX/`; `submission/de_an/` là bản nộp chính, chép từ **de_an_03** vì mọi ca gán nhãn ở đề này đều nhìn rõ trên ảnh.
 
 
 
@@ -82,6 +82,7 @@ Nhóm làm 4 mã đề (de_an_02 đến de_an_05, tải từ thư mục đề c�
 | de_an_04 | 10 | 13 | 9 / 4 | cell phone | 3 / 5 / 6 người |
 
 | de_an_05 | 7 | 7 | 6 / 1 | fork | 2 / 4 / 5 người |
+| de_an_06 | 8 | 12 | 11 / 1 | chair | 2 / 9 / 4 người |
 
 
 

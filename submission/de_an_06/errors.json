@@ -1,0 +1,80 @@
+{
+ "errors": [
+  {
+   "type": "bbox_drift",
+   "target": "img_0091"
+  },
+  {
+   "type": "bbox_drift",
+   "target": "img_0093"
+  },
+  {
+   "type": "bbox_drift",
+   "target": "img_0182"
+  },
+  {
+   "type": "bbox_out_of_bounds",
+   "target": "img_0068"
+  },
+  {
+   "type": "category_swap",
+   "target": "img_0003"
+  },
+  {
+   "type": "category_swap",
+   "target": "img_0018"
+  },
+  {
+   "type": "class_swap",
+   "target": "img_0085"
+  },
+  {
+   "type": "class_swap",
+   "target": "img_0193"
+  },
+  {
+   "type": "class_swap",
+   "target": "img_0235"
+  },
+  {
+   "type": "guideline_mismatch",
+   "target": "img_0228"
+  },
+  {
+   "type": "instance_merge",
+   "target": "img_0224"
+  },
+  {
+   "type": "instance_merge",
+   "target": "img_0247"
+  },
+  {
+   "type": "invalid_class",
+   "target": "img_0083"
+  },
+  {
+   "type": "missing_box",
+   "target": "img_0197"
+  },
+  {
+   "type": "missing_image",
+   "target": "img_0117"
+  },
+  {
+   "type": "missing_image",
+   "target": "img_0219"
+  },
+  {
+   "type": "scene_leak",
+   "target": "scene_122"
+  },
+  {
+   "type": "thing_overlap",
+   "target": "img_0159"
+  },
+  {
+   "type": "wrong_hash",
+   "target": "img_0107"
+  }
+ ]
+}
