@@ -1,8 +1,8 @@
 Họ và tên,GitHub,MSHV,Vai trò chính,ID việc chính,Số việc (kể cả việc chung),Đã xong,Đoạn validator nhận giải thích khi vấn đáp,Ghi chú
-(điền),hdung25,2A202603271,"Trưởng nhóm: chuẩn bị, quyết định + lineage, tích hợp, đề ẩn, nộp bài","P0-1, P0-2, P0-4, P3-*, P6-2, P6-5",13,5,,
-Trieu Hoang Hieu,hieuwewe123,2A202603294,"Validator luật: khung, file, detection","P1-1, P1-2, P1-3",9,3,,
-Luong Duc Manh,ldmanh610,2A202603155,"Validator luật: metadata, panoptic; kiểm F1 trên nhiều seed","P0-5, P1-4, P1-5, P1-6",10,0,,
-Do Phuong Manh,manhtotbung,2A202603148,"Đối chiếu detection ↔ panoptic, sinh ứng viên, chọn ngưỡng","P2-1, P2-2, P2-3, P2-8",10,0,,
-Quốc Anh,QuocAnh-bit,2A202603286,"Công cụ xem ảnh, gộp review_log, truy vết ticket","P2-4, P2-5, P2-7, P5-*, P6-4",12,5,Đối chiếu detection ↔ panoptic (sinh candidates.json) + tools/view_candidates.py & tools/trace_query.py,"Đã push ed7ee0b, 419fccd, 5894a17 lên main"
-Nguyen Thi Minh Trang,MTrang0702,2A202603107,"Bàn giao v2, bảo mật","P4-*, P6-1",14,0,,
+(điền),hdung25,2A202603271,"Trưởng nhóm: chuẩn bị, quyết định + lineage, tích hợp, đề ẩn, nộp bài","P0-1, P0-2, P0-4, P3-*, P6-2, P6-5",13,6,,
+Trieu Hoang Hieu,hieuwewe123,2A202603294,"Validator luật: khung, file, detection","P1-1, P1-2, P1-3",9,4,,
+Luong Duc Manh,ldmanh610,2A202603155,"Validator luật: metadata, panoptic; kiểm F1 trên nhiều seed","P0-5, P1-4, P1-5, P1-6",10,5,,
+Do Phuong Manh,manhtotbung,2A202603148,"Đối chiếu detection ↔ panoptic, sinh ứng viên, chọn ngưỡng","P2-1, P2-2, P2-3, P2-8",10,5,,
+Quốc Anh,QuocAnh-bit,2A202603286,"Công cụ xem ảnh, gộp review_log, truy vết ticket","P2-4, P2-5, P2-7, P5-*, P6-4",12,6,Đối chiếu detection ↔ panoptic (sinh candidates.json) + tools/view_candidates.py & tools/trace_query.py,"Đã push ed7ee0b, 419fccd, 5894a17 lên main"
+Nguyen Thi Minh Trang,MTrang0702,2A202603107,"Bàn giao v2, bảo mật","P4-*, P6-1",14,9,,
 Ô nền vàng: mỗi người tự điền.,,,,,,,,

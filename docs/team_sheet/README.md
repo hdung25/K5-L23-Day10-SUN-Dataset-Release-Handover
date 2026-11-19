@@ -2,7 +2,7 @@
 
 Bản gốc (ai có link đều sửa được): **[Day 10 Lab - Phân công nhóm](https://docs.google.com/spreadsheets/d/1HsmcXXUwMi6U5iYGJdgPCHjrDczQjNvcDeE7YtsKsHc/edit?usp=drivesdk)**
 
-Thư mục này là bản chụp nội dung sheet lúc 19/11 18:55, mỗi tab một file CSV (GitHub hiển thị thành bảng). Ô tích được ghi là `x`.
+Thư mục này là bản chụp nội dung sheet lúc 19/11 18:23, mỗi tab một file CSV (GitHub hiển thị thành bảng). Ô tích được ghi là `x`.
 
 | Tab | File | Nội dung |
 |---|---|---|
@@ -14,3 +14,5 @@ Thư mục này là bản chụp nội dung sheet lúc 19/11 18:55, mỗi tab m�
 | Review ảnh | [06_review_anh.csv](06_review_anh.csv) | từng ứng viên đã xem ảnh: verdict và ghi chú thấy gì |
 | Note chung | [07_note_chung.csv](07_note_chung.csv) | quyết định, câu hỏi, việc giao cho từng người |
 | Checklist nộp | [08_checklist_nop.csv](08_checklist_nop.csv) | các mục phải kiểm trước khi nộp |
+
+Làm mới bản chụp: tải sheet dạng .xlsx (Tệp > Tải xuống > Microsoft Excel) rồi chạy `py tools/sheet_snapshot.py <file.xlsx>`.

@@ -7,7 +7,7 @@ Hạng mục,Người kiểm,Xong?,Ghi chú
 "v1 giữ nguyên; v2 có manifest + sha256, label summary, truy vết, rework queue, README",MTrang0702,Rồi,"r2611, r101, r202 đều đủ 7 phần"
 Lineage có HOLD v1 và release v2 với parent,hdung25,Rồi,HOLD v1 + release v2 có parent cho cả 3 seed
 check_handover.py không còn FAIL (H1–H17),MTrang0702,Rồi,"17/17 PASS cả 3 seed, thử bằng clone sạch + --import như người chấm"
-"trace.json có tier_a, tier_b, notify (seed luyện tập và đề ẩn)",QuocAnh-bit,Chưa,"luyện tập xong (F1 1,0); còn đề ẩn"
+"trace.json có tier_a, tier_b, notify (seed luyện tập và đề ẩn)",QuocAnh-bit,Rồi,"luyện tập xong (F1 1,0); còn đề ẩn"
 "security.md đủ ba mục, có tên ảnh cụ thể",MTrang0702,Rồi,"đủ 3 mục, ca khuôn mặt Hold + tên ảnh (H17 PASS)"
 export_submission.py đã chạy; submission/r<seed>/ đủ file; không commit .zip,hdung25,Rồi,"submission/r2611, r101, r202; không commit .zip"
 "submission/de_an/: errors.json, candidates.json, review_log.csv, trace.json; không commit delivery/",hdung25,Chưa,chờ đề ẩn
