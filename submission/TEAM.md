@@ -10,7 +10,7 @@
 | Triệu Hoàng Hiếu | 2A202603294 | hieuwewe123 | Validator luật (P1-1 đến P1-3): khung `validate.py`, lỗi file và detection (`missing_image`, `wrong_hash`, `invalid_class`, `bbox_out_of_bounds`, `duplicate_box`) |
 | Luong Duc Manh | 2A202603155 | ldmanh610 | Validator luật: metadata và panoptic (`scene_leak`, `guideline_mismatch`, `invalid_category_id`, `thing_overlap`); kiểm F1 trên nhiều seed và lô sạch |
 | Do Phuong Manh | 2A202603148 | manhtotbung | Đối chiếu detection ↔ panoptic, sinh `candidates.json`, đo lô sạch và chọn ngưỡng |
-| Quốc Anh | <<>> | QuocAnh-bit | Công cụ xem ảnh, chia hàng đợi và gộp `review_log.csv`, truy vết ticket (`trace.json`) |
+| Quốc Anh | 2A202603286 | QuocAnh-bit | Công cụ xem ảnh, chia hàng đợi và gộp `review_log.csv`, truy vết ticket (`trace.json`) |
 | Nguyen Thi Minh Trang | 2A202603107 | MTrang0702 | Bàn giao lô v2 (rework, manifest, label summary, truyvet, README, đóng gói), bảo mật (`security.md`) |
 
 Cả nhóm cùng xem ảnh ở Pha 2 và ở đề ẩn.
