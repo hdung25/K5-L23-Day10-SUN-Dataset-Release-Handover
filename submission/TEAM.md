@@ -7,7 +7,7 @@
 | Họ và tên | MSHV | Tài khoản GitHub | Phần chính |
 |---|---|---|---|
 | <<>> | <<>> | hdung25 | Trưởng nhóm: chuẩn bị (P0), quyết định + lineage (P3), tích hợp, đề ẩn, nộp bài |
-| Triệu Hoàng Hiếu | <<>> | hieuwewe123 | Validator luật (P1-1 đến P1-3): khung `validate.py`, lỗi file và detection (`missing_image`, `wrong_hash`, `invalid_class`, `bbox_out_of_bounds`, `duplicate_box`) |
+| Triệu Hoàng Hiếu | 2A202603294 | hieuwewe123 | Validator luật (P1-1 đến P1-3): khung `validate.py`, lỗi file và detection (`missing_image`, `wrong_hash`, `invalid_class`, `bbox_out_of_bounds`, `duplicate_box`) |
 | <<>> | <<>> | ldmanh610 | Validator luật: metadata và panoptic (`scene_leak`, `guideline_mismatch`, `invalid_category_id`, `thing_overlap`); kiểm F1 trên nhiều seed và lô sạch |
 | Do Phuong Manh | <<>> | manhtotbung | Đối chiếu detection ↔ panoptic, sinh `candidates.json`, đo lô sạch và chọn ngưỡng |
 | Quốc Anh | <<>> | QuocAnh-bit | Công cụ xem ảnh, chia hàng đợi và gộp `review_log.csv`, truy vết ticket (`trace.json`) |
