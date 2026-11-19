@@ -1,0 +1,10 @@
+image,type,verdict,note
+000000000872,bbox_drift,rejected,"hai cầu thủ chồng lên nhau, box person bao cả người chạy phía trước, chỉ hụt mũi giày ở mép dưới; ca này lặp lại y hệt ở seed 101 và 202 nên là lệch sẵn có của COCO, không phải lỗi gài"
+000000001675,class_swap,confirmed,"con mèo đen trắng nằm trên laptop, segment panoptic ghi cat đúng; box detection cùng vị trí lại ghi donut nên detection sai"
+000000001818,bbox_drift,rejected,"ngựa vằn mẹ to phủ gần hết khung hình, box zebra chỉ bao phần bên phải quanh con non; ca này lặp lại ở seed 101 và 202 nên là lệch sẵn có của COCO"
+000000005001,category_swap,confirmed,"mở crop: segment là người phụ nữ đội mũ len đỏ đeo kính trong đám đông, panoptic ghi keyboard; detection ghi person đúng"
+000000011699,missing_box,confirmed,"cô gái áo xanh đeo túi xách hoa chéo vai bên phải, segment handbag rõ ràng nhưng không có box handbag nào quanh túi; box handbag duy nhất nằm bên trái ở người khác"
+000000012748,bbox_drift,rejected,"người đàn ông bế em bé cạnh con ngựa, đầu anh ấy nhô ra trên box person; ca này lặp lại ở seed 101 và 202 nên là lệch sẵn có của COCO, không phải lỗi gài"
+000000018770,category_swap,confirmed,"ảnh cận áo vest, vật trong segment là cà vạt hoa văn xanh đen; panoptic ghi train là sai, detection ghi tie đúng"
+000000020247,bbox_drift,confirmed,"con gấu nâu đi về phía máy ảnh, box bear lệch sang phải và lên trên: hụt nửa trái thân và cả hai chân trước"
+000000025057,instance_merge,confirmed,"segment của người đàn ông cởi trần cầm đĩa bay chứa luôn pixel của người nhỏ đứng xa bên trái; box person của người nhỏ không còn segment nào, tức hai người bị gộp thành một segment panoptic"

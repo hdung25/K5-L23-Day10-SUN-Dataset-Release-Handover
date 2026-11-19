@@ -1,0 +1,8 @@
+image,type,annotator,reviewer,action
+000000001675,class_swap,A04,Q03,sửa lớp của box theo ảnh
+000000011699,missing_box,A03,Q01,thêm box cho vật bị thiếu
+000000014007,bbox_out_of_bounds,A05,Q03,kéo box về trong ảnh
+000000016228,duplicate_box,A02,Q03,xoá box bị lặp
+000000020247,bbox_drift,A01,Q03,chỉnh box ôm sát vật
+000000023937,missing_image,A05,Q02,giao lại file ảnh rồi kiểm lại nhãn
+000000025393,invalid_class,A05,Q02,sửa class_id ngoài 0-79

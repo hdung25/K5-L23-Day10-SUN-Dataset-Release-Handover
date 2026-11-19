@@ -1,0 +1,159 @@
+{
+  "candidates": [
+    {
+      "image": "000000000872",
+      "seg_class": "person",
+      "segment_id": 12234672,
+      "area": 47692,
+      "seg_bbox": [
+        164,
+        126,
+        429,
+        607
+      ],
+      "type": "bbox_drift",
+      "reason": "box cùng lớp lệch khỏi segment",
+      "box_index": 1,
+      "share_inside": 0.957,
+      "iou": 0.781
+    },
+    {
+      "image": "000000001675",
+      "seg_class": "cat",
+      "segment_id": 2172198,
+      "area": 143933,
+      "seg_bbox": [
+        0,
+        14,
+        640,
+        308
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'donut' trùng vị trí segment 'cat'",
+      "det_class": "donut",
+      "box_index": 0,
+      "iou": 0.999
+    },
+    {
+      "image": "000000001818",
+      "seg_class": "zebra",
+      "segment_id": 8092282,
+      "area": 120106,
+      "seg_bbox": [
+        0,
+        1,
+        638,
+        425
+      ],
+      "type": "bbox_drift",
+      "reason": "box cùng lớp lệch khỏi segment",
+      "box_index": 0,
+      "share_inside": 0.504,
+      "iou": 0.718
+    },
+    {
+      "image": "000000005001",
+      "seg_class": "keyboard",
+      "segment_id": 6448002,
+      "area": 1519,
+      "seg_bbox": [
+        425,
+        23,
+        469,
+        94
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'person' trùng vị trí segment 'keyboard'",
+      "det_class": "person",
+      "box_index": 12,
+      "iou": 0.988
+    },
+    {
+      "image": "000000011699",
+      "seg_class": "handbag",
+      "segment_id": 4210499,
+      "area": 8437,
+      "seg_bbox": [
+        257,
+        219,
+        367,
+        483
+      ],
+      "type": "missing_box",
+      "reason": "segment thing không có box nào cùng lớp"
+    },
+    {
+      "image": "000000012748",
+      "seg_class": "person",
+      "segment_id": 4079972,
+      "area": 56935,
+      "seg_bbox": [
+        221,
+        139,
+        480,
+        632
+      ],
+      "type": "bbox_drift",
+      "reason": "box cùng lớp lệch khỏi segment",
+      "box_index": 1,
+      "share_inside": 0.94,
+      "iou": 0.887
+    },
+    {
+      "image": "000000018770",
+      "seg_class": "train",
+      "segment_id": 2169881,
+      "area": 5497,
+      "seg_bbox": [
+        269,
+        176,
+        361,
+        377
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'tie' trùng vị trí segment 'train'",
+      "det_class": "tie",
+      "box_index": 0,
+      "iou": 0.994
+    },
+    {
+      "image": "000000020247",
+      "seg_class": "bear",
+      "segment_id": 5397864,
+      "area": 35173,
+      "seg_bbox": [
+        333,
+        176,
+        511,
+        439
+      ],
+      "type": "bbox_drift",
+      "reason": "box cùng lớp lệch khỏi segment",
+      "box_index": 0,
+      "share_inside": 0.753,
+      "iou": 0.643
+    },
+    {
+      "image": "000000025057",
+      "seg_class": "person",
+      "segment_id": 6382449,
+      "area": 31103,
+      "seg_bbox": [
+        98,
+        6,
+        429,
+        423
+      ],
+      "type": "instance_merge",
+      "reason": "một segment nằm trong hai box cùng lớp",
+      "box_indexes": [
+        3,
+        2
+      ],
+      "shares": [
+        0.976,
+        0.042
+      ]
+    }
+  ]
+}
