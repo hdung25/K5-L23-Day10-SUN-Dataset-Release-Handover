@@ -1,0 +1,1184 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 10 · Xem ứng viên P2-4</title>
+  <style>
+    /* Màu, khoảng cách và lưới dùng chung cho danh sách và khu vực xem ảnh. */
+    :root {
+      color-scheme: light;
+      --ink: #18233a;
+      --muted: #57667f;
+      --line: #d9e1ee;
+      --surface: #fff;
+      --page: #f3f6fb;
+      --accent: #4338a5;
+      --accent-light: #eeecfb;
+      --done: #1a6749;
+      --done-light: #e4f5ed;
+      --rejected: #854021;
+      --rejected-light: #fdf0e8;
+      font: 16px/1.45 system-ui, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: var(--page); }
+    h1, h2, p, figure { margin: 0; }
+    [hidden] { display: none !important; }
+    button, input, select, textarea { font: inherit; }
+    button, select, .link-button { cursor: pointer; }
+    button:disabled { cursor: default; opacity: .55; }
+    :focus-visible { outline: 3px solid #7366db; outline-offset: 2px; }
+    a { color: var(--accent); }
+    .button, .link-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.55rem;
+      padding: .55rem .82rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--ink);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .button:hover:not(:disabled), .link-button:hover { border-color: var(--accent); color: var(--accent); }
+    .primary { color: white; background: var(--accent); border-color: var(--accent); }
+    .primary:hover:not(:disabled) { color: white; background: #36298e; }
+    .topbar { background: #162039; color: white; }
+    .topbar-inner, .layout, .notice { max-width: 1500px; margin: auto; }
+    .topbar-inner {
+      min-height: 5rem;
+      padding: .9rem clamp(1rem, 3vw, 2.5rem);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: .75rem;
+    }
+    h1 { font-size: clamp(1.3rem, 3vw, 1.7rem); letter-spacing: -.035em; }
+    .toolbar, .navigation, .layers, .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .55rem;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(225px, 290px) minmax(0, 1fr);
+      gap: clamp(.85rem, 2vw, 1.35rem);
+      align-items: start;
+      padding: clamp(.95rem, 3vw, 2rem) clamp(1rem, 3vw, 2.5rem);
+    }
+    .sidebar, .panel, .empty { background: var(--surface); border: 1px solid var(--line); border-radius: 13px; }
+    .sidebar { overflow: hidden; }
+    .queue-tools, .review-header, .review-form, .empty { padding: 1rem; }
+    .queue-tools { display: grid; gap: .65rem; border-bottom: 1px solid var(--line); }
+    .queue-tools h2 { font-size: 1.05rem; }
+    .queue-tools p, .detail, .hint, figcaption span, .form-note, .labels { color: var(--muted); }
+    progress { width: 100%; height: .65rem; accent-color: var(--accent); }
+    input[type="search"], select, textarea {
+      width: 100%;
+      min-width: 0;
+      padding: .55rem .65rem;
+      border: 1px solid #b8c4d7;
+      border-radius: 7px;
+      color: var(--ink);
+      background: var(--surface);
+    }
+    .queue {
+      max-height: min(63vh, 45rem);
+      margin: 0;
+      padding: .35rem;
+      overflow-y: auto;
+      list-style: none;
+    }
+    .queue-button {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: .35rem;
+      width: 100%;
+      border: 0;
+      border-radius: 7px;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      padding: .58rem .64rem;
+      text-align: left;
+    }
+    .queue-button:hover { background: var(--page); }
+    .queue-button[aria-current="true"] { background: var(--accent-light); }
+    .queue-image, .queue-kind { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .queue-image, .image-id { font-family: ui-monospace, Consolas, monospace; font-weight: 650; }
+    .queue-kind { color: var(--muted); font-size: .78rem; }
+    .badge {
+      align-self: center;
+      display: inline-block;
+      padding: .22rem .42rem;
+      border-radius: 6px;
+      font-size: .72rem;
+      font-weight: 700;
+      background: #edf1f7;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .badge[data-verdict="confirmed"] { background: var(--done-light); color: var(--done); }
+    .badge[data-verdict="rejected"] { background: var(--rejected-light); color: var(--rejected); }
+    .empty { color: var(--muted); }
+    .queue-empty { padding: .8rem; color: var(--muted); font-size: .9rem; }
+    .review-header { display: grid; gap: .65rem; }
+    .item-heading { display: flex; flex-wrap: wrap; gap: .6rem 1rem; align-items: center; justify-content: space-between; }
+    .image-id { overflow-wrap: anywhere; font-size: clamp(1.05rem, 3vw, 1.42rem); }
+    .detail, .hint { font-size: .89rem; overflow-wrap: anywhere; }
+    .layers { padding: .65rem 1rem; border-block: 1px solid var(--line); background: #f7f9fd; font-size: .9rem; }
+    .layers label { display: inline-flex; align-items: center; gap: .3rem; }
+    .layers select { width: auto; padding: .22rem .35rem; }
+    .layers input { accent-color: var(--accent); }
+    .layer-status { color: var(--muted); }
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 275px), 1fr));
+      padding: .8rem 1rem 1rem;
+      gap: .75rem;
+    }
+    .preview { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 9px; }
+    figcaption { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .3rem; padding: .58rem .7rem; font-size: .87rem; }
+    .viewport { max-height: 61vh; overflow: auto; background: #141a25; }
+    .stage { width: 100%; position: relative; }
+    .stage img { display: block; width: 100%; height: auto; }
+    .overlay { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    /* Canvas trong suốt có cùng tỉ lệ với ảnh bên dưới để viền luôn khớp. */
+    .contours { width: 100%; height: 100%; image-rendering: pixelated; }
+    .box { position: absolute; border: 2px solid #a3fa3e; color: #172116; }
+    .mask-box { border-color: #70eaff; }
+    .box-label {
+      display: block;
+      width: max-content;
+      max-width: 12rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 0 3px;
+      white-space: nowrap;
+      background: #a3fa3e;
+      font-size: .7rem;
+      font-weight: 700;
+    }
+    .mask-box .box-label { background: #70eaff; }
+    .media-message { background: var(--page); color: var(--muted); min-height: 5rem; display: grid; place-items: center; padding: .6rem; }
+    .labels { padding: .5rem .7rem; font-size: .78rem; overflow-wrap: anywhere; }
+    /* Khu xem vùng cắt có thể co lại trên điện thoại và cuộn khi phóng. */
+    .crop-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+      align-items: end;
+      padding: 0 1rem .8rem;
+    }
+    .crop-controls label { display: grid; gap: .25rem; min-width: 0; flex: 1 1 15rem; font-size: .9rem; }
+    .crop-preview { max-width: 38rem; margin: 0 1rem 1rem; }
+    .crop-preview canvas { display: block; width: 100%; height: auto; }
+    .review-form { display: grid; gap: .8rem; border-top: 1px solid var(--line); }
+    .form-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .78rem; }
+    .form-field { display: grid; align-content: start; gap: .3rem; font-size: .92rem; font-weight: 650; }
+    textarea { min-height: 5rem; resize: vertical; font-weight: 400; }
+    .form-note { font-size: .85rem; }
+    .flash { color: var(--done); font-size: .88rem; font-weight: 600; }
+    .flash[data-error="true"], .notice { color: var(--rejected); }
+    .notice { padding: .75rem clamp(1rem, 3vw, 2.5rem) 0; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    @media (max-width: 690px) {
+      .layout { grid-template-columns: 1fr; }
+      .queue { max-height: 13rem; }
+      .form-fields { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <h1>Xem ứng viên P2-4</h1>
+      <div class="toolbar">
+        <button class="button" type="button" id="refresh">Làm mới tiến độ</button>
+        <a class="link-button" href="/review_log.csv" download="review_log.csv">Tải nhật ký CSV</a>
+      </div>
+    </div>
+  </header>
+  <p class="notice" id="notice" role="alert" hidden></p>
+  <main class="layout">
+    <!-- Thanh bên giữ tiến độ review và danh sách ứng viên có thể lọc. -->
+    <aside class="sidebar" aria-labelledby="queue-title">
+      <div class="queue-tools">
+        <h2 id="queue-title">Ảnh cần kiểm</h2>
+        <p id="progress-text" aria-live="polite">Đang tải…</p>
+        <progress id="progress" value="0" max="1" aria-label="Tiến độ review"></progress>
+        <label class="sr-only" for="search">Tìm theo mã ảnh hoặc loại lỗi</label>
+        <input type="search" id="search" placeholder="Mã ảnh hoặc loại lỗi">
+        <label class="sr-only" for="filter">Lọc theo trạng thái</label>
+        <select id="filter">
+          <option value="all">Tất cả trạng thái</option>
+          <option value="pending">Chưa xem</option>
+          <option value="confirmed">Đã xác nhận lỗi</option>
+          <option value="rejected">Đã loại ứng viên</option>
+        </select>
+      </div>
+      <ul class="queue" id="queue"></ul>
+      <p class="queue-empty" id="queue-empty" hidden></p>
+    </aside>
+    <p class="empty" id="empty">Đang tải danh sách ứng viên…</p>
+    <section class="panel" id="review-panel" aria-labelledby="image-id" hidden>
+      <div class="review-header">
+        <div class="item-heading">
+          <h2 class="image-id" id="image-id"></h2>
+          <div class="navigation">
+            <button type="button" class="button" id="prev">Ảnh trước</button>
+            <button type="button" class="button" id="next">Ảnh sau</button>
+          </div>
+        </div>
+        <p class="detail" id="kind"></p>
+        <p class="hint" id="hint" hidden></p>
+      </div>
+      <!-- Bật riêng từng lớp và dùng cùng mức phóng cho ảnh, mask và vùng cắt. -->
+      <div class="layers">
+        <label><input type="checkbox" id="show-boxes" checked> Hộp YOLO</label>
+        <label><input type="checkbox" id="show-contours" checked disabled> Viền segment trên ảnh</label>
+        <label><input type="checkbox" id="show-mask" checked> Mask panoptic</label>
+        <label for="zoom">Phóng
+          <select id="zoom">
+            <option value="100">100%</option>
+            <option value="150">150%</option>
+            <option value="200">200%</option>
+            <option value="300">300%</option>
+          </select>
+        </label>
+        <span class="layer-status" id="contour-status" role="status" hidden></span>
+      </div>
+      <div class="media-grid">
+        <figure class="preview">
+          <figcaption><strong>Ảnh và nhãn YOLO</strong><a id="original" target="_blank" rel="noopener" hidden>Mở ảnh gốc</a></figcaption>
+          <div class="viewport">
+            <div class="stage" id="photo-stage" hidden>
+              <img id="photo" alt="Ảnh ứng viên">
+              <!-- Đặt viền trên ảnh gốc và dưới hộp YOLO để vẫn đọc được tên lớp. -->
+              <canvas class="overlay contours" id="contours" aria-hidden="true" hidden></canvas>
+              <div class="overlay" id="boxes" aria-hidden="true"></div>
+            </div>
+            <p class="media-message" id="photo-error"></p>
+          </div>
+          <p class="labels" id="photo-labels" hidden></p>
+        </figure>
+        <figure class="preview" id="mask-figure">
+          <figcaption><strong>Panoptic</strong><span>Mask và hộp segment</span></figcaption>
+          <div class="viewport">
+            <div class="stage" id="mask-stage" hidden>
+              <img id="mask" alt="Mask panoptic của ảnh ứng viên">
+              <div class="overlay" id="segments" aria-hidden="true"></div>
+            </div>
+            <p class="media-message" id="mask-error"></p>
+          </div>
+          <p class="labels" id="mask-labels" hidden></p>
+        </figure>
+      </div>
+      <div class="crop-controls">
+        <label for="crop-object">Cắt quanh vật
+          <select id="crop-object" disabled>
+            <option value="">Chọn hộp YOLO hoặc segment</option>
+          </select>
+        </label>
+        <button class="button" id="reset-crop" type="button" disabled>Bỏ cắt</button>
+      </div>
+      <!-- Canvas này chứa điểm ảnh gốc trong vùng cắt, cùng các viền tương ứng. -->
+      <figure class="preview crop-preview" id="crop-preview" hidden>
+        <figcaption><strong>Vùng ảnh đã cắt</strong><span id="crop-caption" aria-live="polite"></span></figcaption>
+        <div class="viewport">
+          <div class="stage" id="crop-stage">
+            <canvas id="crop-picture" role="img" aria-label="Vùng ảnh quanh vật đã chọn"></canvas>
+            <div class="overlay" id="crop-boxes" aria-hidden="true"></div>
+          </div>
+        </div>
+      </figure>
+      <!-- Lưu đánh giá của ứng viên đang mở vào nhật ký dùng chung của nhóm. -->
+      <form class="review-form" id="review-form">
+        <div class="form-fields">
+          <label class="form-field" for="error-type">Loại lỗi
+            <select id="error-type" required></select>
+          </label>
+          <label class="form-field" for="verdict">Kết quả
+            <select id="verdict" required>
+              <option value="">Chọn kết quả</option>
+              <option value="confirmed">Xác nhận lỗi (confirmed)</option>
+              <option value="rejected">Loại ứng viên (rejected)</option>
+            </select>
+          </label>
+        </div>
+        <label class="form-field" for="note">Bạn thấy gì trong ảnh?
+          <textarea id="note" maxlength="2000" minlength="20" required></textarea>
+          <span class="form-note">Ít nhất 20 ký tự. Nêu vật thể và lý do xác nhận hoặc loại.</span>
+        </label>
+        <div class="form-actions">
+          <button class="button primary" id="save" type="submit">Lưu kết quả</button>
+          <button class="button" id="reload-item" type="button" hidden>Nạp bản đã lưu</button>
+          <span class="flash" id="flash" role="status"></span>
+        </div>
+      </form>
+    </section>
+  </main>
+  <script>
+    // Báo lỗi sớm với các biến JavaScript chưa khai báo.
+    'use strict';
+
+    // Lấy các điều khiển dùng nhiều lần và chuẩn bị kho lưu bản nháp trong trình duyệt.
+    const element = (id) => document.getElementById(id);
+    // Danh sách ứng viên bên trái.
+    const queue = element('queue');
+    // Ô chọn loại lỗi sau khi đối chiếu.
+    const choices = element('error-type');
+    // Ô xác nhận hoặc loại ứng viên.
+    const verdict = element('verdict');
+    // Ô ghi bằng chứng nhìn thấy trong ảnh.
+    const note = element('note');
+    // Nút gửi kết quả về máy chủ.
+    const save = element('save');
+    // Vùng báo kết quả lưu ngay cạnh nút.
+    const flash = element('flash');
+    // Nút dùng khi một bạn khác vừa lưu cùng ứng viên.
+    const reload = element('reload-item');
+    // Giữ bản nháp theo mã ứng viên khi chuyển qua ảnh khác.
+    const drafts = new Map();
+    // Tên tiếng Việt của ba trạng thái review.
+    const statusNames = { pending: 'Chưa xem', confirmed: 'Lỗi', rejected: 'Đã loại' };
+    // Đổi mã lỗi của validator thành mô tả dễ đọc.
+    const typeNames = {
+      class_swap: 'Detection nhầm lớp',
+      category_swap: 'Panoptic nhầm lớp',
+      bbox_drift: 'Hộp detection bị lệch',
+      missing_box: 'Detection thiếu hộp',
+      instance_merge: 'Panoptic gộp hai vật'
+    };
+
+    // Giữ trạng thái gần nhất của hàng đợi từ máy chủ.
+    let items = [];
+    // Giữ các dòng đang khớp bộ lọc.
+    let visible = [];
+    // Chưa mở ảnh nào khi trang mới tải.
+    let activeId = null;
+    // Tăng số này để bỏ qua phản hồi ảnh cũ đến trễ.
+    let mediaVersion = 0;
+    let savedVersion = 0;
+    // Cờ này chỉ bật khi đã đọc được mask và kích thước khớp với ảnh.
+    let contoursReady = false;
+    // Hai danh sách chỉ chứa hình chữ nhật hợp lệ của ứng viên đang mở.
+    let photoBoxes = [];
+    // Giữ các vùng có thể chọn để cắt quanh vật.
+    let cropRegions = [];
+
+    // Ứng viên chưa có kết quả được coi là chưa xem.
+    const reviewStatus = (item) => item.review?.verdict || 'pending';
+    // Lấy ứng viên chính xác theo mã đang chọn.
+    const activeItem = () => items.find((item) => item.id === activeId);
+    // Dùng nguyên mã nếu không tìm được mô tả.
+    const typeName = (type) => typeNames[type] || type;
+
+    // Đưa thông báo chung lên đầu trang.
+    function setNotice(message) {
+      // Hiển thị văn bản mà không thực thi HTML từ dữ liệu.
+      element('notice').textContent = message;
+      // Chỉ hiện vùng thông báo khi có nội dung.
+      element('notice').hidden = !message;
+    }
+
+    // Hiện phản hồi liên quan đến lượt lưu hiện tại.
+    function setFlash(message, isError = false) {
+      // Đưa thông báo ngắn cạnh nút lưu.
+      flash.textContent = message;
+      // Để CSS đổi màu theo lỗi hoặc thành công.
+      flash.dataset.error = String(isError);
+    }
+
+    // Gói việc gọi API và đọc phản hồi JSON.
+    async function json(url, options) {
+      // Giữ phản hồi HTTP khi kết nối thành công.
+      let response;
+      // Bắt lỗi tại bước có thể không hoàn tất.
+      try {
+        // Đọc trạng thái mới nhất và giữ các tùy chọn riêng của yêu cầu.
+        response = await fetch(url, { cache: 'no-store', ...options });
+      } catch {
+        // Giải thích lỗi mạng bằng tiếng Việt.
+        throw new Error('Mất kết nối tới máy đang chạy chương trình.');
+      }
+      // Dự phòng khi phản hồi lỗi không có JSON.
+      const data = await response.json().catch(() => ({}));
+      // Xử lý riêng các mã HTTP báo lỗi.
+      if (!response.ok) {
+        // Ưu tiên thông báo do máy chủ trả về.
+        const error = new Error(data.error || `Yêu cầu chưa hoàn tất (HTTP ${response.status}).`);
+        // Giữ mã HTTP để nhận ra xung đột khi lưu.
+        error.status = response.status;
+        // Chuyển lỗi cho thao tác gọi API.
+        throw error;
+      }
+      // Trả kết quả đã đọc được.
+      return data;
+    }
+
+    // Vẽ lại hàng đợi và tiến độ sau khi lọc hoặc lưu.
+    function refreshQueue() {
+      // Chuẩn hóa từ khóa để tìm không phân biệt hoa thường.
+      const query = element('search').value.trim().toLowerCase();
+      // Đọc trạng thái cần lọc.
+      const filter = element('filter').value;
+      // Giữ lại các dòng hợp cả trạng thái và từ khóa.
+      visible = items.filter((item) => {
+        // Cho phép tìm theo tên ảnh, mã lỗi hoặc mô tả.
+        const text = `${item.image} ${item.type} ${typeName(item.type)}`.toLowerCase();
+        // Kết hợp hai điều kiện trong cùng bộ lọc.
+        return (filter === 'all' || reviewStatus(item) === filter) && text.includes(query);
+      });
+
+      // Đếm cả mục xác nhận lẫn mục đã loại.
+      const done = items.filter((item) => item.review).length;
+      // Hiện tiến độ cho toàn hàng đợi.
+      element('progress-text').textContent = `${done}/${items.length} mục đã review`;
+      // Giữ thanh tiến độ hợp lệ khi hàng đợi rỗng.
+      element('progress').max = Math.max(1, items.length);
+      // Đặt số mục đã xem lên thanh tiến độ.
+      element('progress').value = done;
+      // Xóa hàng cũ trước khi vẽ lại danh sách.
+      queue.replaceChildren();
+      // Tạo một nút cho mỗi ứng viên đang hiện.
+      for (const item of visible) {
+        // Tạo dòng trong danh sách.
+        const row = document.createElement('li');
+        // Dùng nút để chọn được cả bằng bàn phím.
+        const button = document.createElement('button');
+        // Gom tên ảnh và loại ứng viên thành một cụm.
+        const title = document.createElement('span');
+        // Ô chứa tên ảnh.
+        const image = document.createElement('span');
+        // Ô chứa mã lỗi đang nghi ngờ.
+        const kind = document.createElement('span');
+        // Ô chứa trạng thái review.
+        const badge = document.createElement('span');
+        // Nút chỉ chọn ảnh, không gửi biểu mẫu.
+        button.type = 'button';
+        // Áp dụng kiểu trình bày hàng đợi.
+        button.className = 'queue-button';
+        // Báo ảnh hiện tại cho công cụ đọc màn hình.
+        if (item.id === activeId) button.setAttribute('aria-current', 'true');
+        // Áp dụng kiểu cho tên ảnh.
+        image.className = 'queue-image';
+        // Hiện tên ảnh như văn bản thuần.
+        image.textContent = item.image;
+        // Áp dụng kiểu chữ cho mã lỗi.
+        kind.className = 'queue-kind';
+        // Dùng mã gốc để đối chiếu với candidates.json.
+        kind.textContent = item.type;
+        // Áp dụng kiểu cho nhãn trạng thái.
+        badge.className = 'badge';
+        // Để CSS định màu theo trạng thái.
+        badge.dataset.verdict = reviewStatus(item);
+        // Hiện tên tiếng Việt của trạng thái.
+        badge.textContent = statusNames[reviewStatus(item)];
+        // Đặt tên ảnh và mã lỗi vào cùng cụm.
+        title.append(image, kind);
+        // Đặt thông tin ảnh và trạng thái trong nút.
+        button.append(title, badge);
+        // Mở đúng mã ứng viên khi người dùng chọn.
+        button.addEventListener('click', () => selectItem(item.id));
+        // Lắp nút vào dòng danh sách.
+        row.append(button);
+        // Hiện dòng mới trên giao diện.
+        queue.append(row);
+      }
+      // Lấy vùng báo danh sách trống.
+      const empty = element('queue-empty');
+      // Chỉ báo trống khi bộ lọc không còn dòng nào.
+      empty.hidden = visible.length > 0;
+      // Phân biệt hết kết quả lọc và dữ liệu rỗng.
+      empty.textContent = items.length ? 'Không có mục khớp bộ lọc.' : 'Chưa có ứng viên.';
+      // Xác định vị trí ảnh hiện tại trong danh sách đã lọc.
+      const index = visible.findIndex((item) => item.id === activeId);
+      // Vô hiệu nút lùi ở đầu danh sách.
+      element('prev').disabled = index <= 0;
+      // Vô hiệu nút tiến khi đã ở cuối.
+      element('next').disabled = !visible.length || index >= visible.length - 1;
+    }
+
+    // Lấy bản nháp, hoặc dựng bản ban đầu từ kết quả đang lưu.
+    function draftFor(item) {
+      // Ưu tiên phần người dùng vừa nhập.
+      return drafts.get(item.id) || {
+        // Giữ bản cũ để máy chủ phát hiện lượt ghi đồng thời.
+        previous: item.review,
+        // Khôi phục loại lỗi đã chọn, hoặc dùng loại đề xuất.
+        type: item.review?.type || item.type,
+        // Để trống kết luận nếu ứng viên chưa được xem.
+        verdict: item.review?.verdict || '',
+        // Khôi phục ghi chú đã lưu.
+        note: item.review?.note || ''
+      };
+    }
+
+    // Điền biểu mẫu cho ứng viên đang mở.
+    function updateForm(item) {
+      // Lấy dữ liệu cần điền cho ứng viên này.
+      const draft = draftFor(item);
+      // Xóa lựa chọn của ảnh đã mở trước đó.
+      choices.replaceChildren();
+      // Chỉ đưa các loại lỗi hợp lệ cho ứng viên này.
+      for (const type of item.choices) {
+        // Tạo một lựa chọn trong ô loại lỗi.
+        const option = document.createElement('option');
+        // Giữ mã lỗi để lưu vào CSV.
+        option.value = type;
+        // Hiện cả mô tả dễ đọc và mã gốc.
+        option.textContent = `${typeName(type)} (${type})`;
+        // Thêm lựa chọn vào danh sách.
+        choices.append(option);
+      }
+      // Chọn lại loại lỗi đã nhập.
+      choices.value = draft.type;
+      // Khôi phục kết luận đã nhập.
+      verdict.value = draft.verdict;
+      // Khôi phục ghi chú đã nhập.
+      note.value = draft.note;
+      // Gỡ lỗi độ dài của lần nhập trước.
+      note.setCustomValidity('');
+      // Xóa thông báo lưu của ảnh trước.
+      setFlash('');
+      // Ẩn nút nạp lại cho đến khi cần xử lý xung đột.
+      reload.hidden = true;
+    }
+
+    // Giữ dữ liệu đang nhập trước khi điều hướng hoặc gửi.
+    function rememberDraft() {
+      // Tìm đối tượng đang mở bằng mã hiện tại.
+      const item = activeItem();
+      // Bỏ qua thao tác nếu chưa có ảnh được chọn.
+      if (!item) return;
+      // Lấy dữ liệu cần điền cho ứng viên này.
+      const draft = draftFor(item);
+      // Lưu bản nháp riêng theo mã ứng viên.
+      drafts.set(item.id, {
+        // Giữ nguyên phiên bản tham chiếu người dùng đã xem.
+        previous: draft.previous,
+        // Đọc lựa chọn loại lỗi trên giao diện.
+        type: choices.value,
+        // Đọc kết luận người dùng đang chọn.
+        verdict: verdict.value,
+        // Ghi lại nội dung đang nhập.
+        note: note.value
+      });
+      // Gỡ lỗi độ dài của lần nhập trước.
+      note.setCustomValidity('');
+    }
+
+    // Vẽ hộp theo toạ độ chuẩn hoá để ảnh lớn và ảnh cắt dùng cùng hàm.
+    function drawOverlay(container, labels, regions, isMask) {
+      // Gỡ lớp hộp của ảnh trước.
+      container.replaceChildren();
+      // Vẽ một hộp cho mỗi vùng hợp lệ.
+      for (const region of regions) {
+        // Bỏ qua vùng có tọa độ không tính được.
+        if (![region.x, region.y, region.w, region.h].every(Number.isFinite)) continue;
+        // Tạo khung hộp bằng phần tử HTML.
+        const box = document.createElement('div');
+        // Dùng màu khác nhau cho panoptic và YOLO.
+        box.className = isMask ? 'box mask-box' : 'box';
+        // Chuyển tọa độ x chuẩn hóa thành phần trăm.
+        box.style.left = `${region.x * 100}%`;
+        // Chuyển tọa độ y chuẩn hóa thành phần trăm.
+        box.style.top = `${region.y * 100}%`;
+        // Đặt chiều rộng theo tỷ lệ ảnh.
+        box.style.width = `${region.w * 100}%`;
+        // Đặt chiều cao theo tỷ lệ ảnh.
+        box.style.height = `${region.h * 100}%`;
+        // Tạo dòng tên lớp ngay trên hộp.
+        const label = document.createElement('span');
+        // Áp dụng kiểu chữ của tên lớp.
+        label.className = 'box-label';
+        // Hiện tên lớp nhãn gốc.
+        label.textContent = region.label;
+        // Gắn tên lớp vào hộp.
+        box.append(label);
+        // Đặt hộp lên đúng lớp phủ.
+        container.append(box);
+      }
+      // Vùng cắt dùng lại hộp YOLO và không cần thêm danh sách tên lớp.
+      if (!labels) return;
+      // Tóm tắt các lớp xuất hiện, mỗi tên một lần.
+      const names = [...new Set(regions.map((region) => region.label))];
+      // Đưa các tên lớp về một dòng dễ đọc.
+      labels.textContent = names.join(' · ');
+      // Ẩn dòng tên lớp khi không có hộp.
+      labels.hidden = !names.length;
+    }
+
+    // Tạo một mặt nạ trong suốt chứa viền theo đúng pixel phân đoạn COCO.
+    function drawContours(mask) {
+      // Dùng kích thước thật để đọc từng pixel PNG ở đúng vị trí.
+      const width = mask.naturalWidth;
+      // Lấy chiều cao nguyên bản của mask PNG.
+      const height = mask.naturalHeight;
+      // Canvas tạm để giải mã PNG qua bộ đọc ảnh của trình duyệt.
+      const source = document.createElement('canvas');
+      // Giữ nguyên số cột khi sao chép mask vào canvas tạm.
+      source.width = width;
+      // Giữ nguyên số hàng của mask khi đọc pixel.
+      source.height = height;
+      // Đọc bốn kênh RGBA, trong đó ba kênh đầu mã hoá mã segment.
+      const sourceContext = source.getContext('2d', { willReadFrequently: true });
+      // Sao chép toàn bộ pixel mask vào canvas tạm.
+      sourceContext.drawImage(mask, 0, 0);
+      // Lấy mảng RGBA của toàn bộ mask.
+      const pixels = sourceContext.getImageData(0, 0, width, height).data;
+      // Một mã số lưu danh tính của segment ở mỗi pixel.
+      const ids = new Uint32Array(width * height);
+      // Duyệt từng pixel để đổi từ RGB sang mã segment.
+      for (let index = 0; index < ids.length; index++) {
+        // Mỗi pixel chiếm bốn ô liên tiếp trong vùng dữ liệu RGBA.
+        const offset = index * 4;
+        // Công thức mã COCO: R + 256 × G + 65536 × B.
+        ids[index] = pixels[offset] + 256 * pixels[offset + 1] + 65536 * pixels[offset + 2];
+      }
+      // Đầu ra có cùng kích thước với mask và trong suốt ở mọi điểm khởi đầu.
+      const contours = element('contours');
+      // Giữ đúng số cột để viền khớp ảnh.
+      contours.width = width;
+      // Giữ đúng số hàng để viền khớp ảnh.
+      contours.height = height;
+      // Lấy bộ vẽ cho canvas chứa viền.
+      const context = contours.getContext('2d');
+      // Bắt đầu từ ảnh trong suốt có cùng kích thước.
+      const output = context.createImageData(width, height);
+      // Duyệt từng hàng ngang.
+      for (let y = 0; y < height; y++) {
+        // Duyệt từng cột trên hàng đó.
+        for (let x = 0; x < width; x++) {
+          // Đổi cặp cột, hàng thành chỉ số trên mảng một chiều.
+          const index = y * width + x;
+          // Mã 0 là nền/void nên không tự vẽ viền cho nền.
+          const id = ids[index];
+          // Bỏ qua các điểm nằm trong nền.
+          if (id === 0) continue;
+          // Kiểm tra bốn pixel kề ngang dọc. Mép ảnh cũng kết thúc một segment.
+          const edge = x === 0 || x === width - 1 || y === 0 || y === height - 1 ||
+            ids[index - 1] !== id || ids[index + 1] !== id ||
+            ids[index - width] !== id || ids[index + width] !== id;
+          // Chỉ ghi pixel màu cyan ở biên, phần bên trong vẫn trong suốt.
+          if (!edge) continue;
+          // Ghi một điểm viền màu xanh sáng.
+          output.data.set([48, 226, 255, 255], index * 4);
+        }
+      }
+      // Đẩy toàn bộ dữ liệu vào canvas một lần để tránh chậm theo số pixel.
+      context.putImageData(output, 0, 0);
+    }
+
+    // Vẽ viền khi cả hai tệp tải xong và dùng đúng cùng hệ tọa độ.
+    function updateInspectionTools() {
+      // Chỉ cho cắt khi có ảnh gốc đã đọc được và ít nhất một vùng hợp lệ.
+      const photoReady = !element('photo-stage').hidden;
+      // Chỉ mở ô chọn khi ảnh có ít nhất một vùng hợp lệ.
+      element('crop-object').disabled = !photoReady || !cropRegions.length;
+      // Lấy ảnh hiển thị để kiểm tra kích thước hoặc lấy pixel cắt.
+      const photo = element('photo');
+      // Lấy mask đã giải mã để xác định biên segment.
+      const mask = element('mask');
+      // Lấy vùng thông báo riêng cho lớp viền.
+      const status = element('contour-status');
+      // Mỗi mục chỉ cần đọc toàn bộ pixel mask một lần.
+      if (!contoursReady && photoReady && !element('mask-stage').hidden) {
+        // Bắt lỗi tại bước có thể không hoàn tất.
+        try {
+          // Tránh vẽ sai vị trí trong trường hợp ảnh và mask khác kích thước.
+          if (photo.naturalWidth !== mask.naturalWidth || photo.naturalHeight !== mask.naturalHeight) {
+            // Báo rõ nguyên nhân khi không thể chồng viền chính xác.
+            throw new Error('Ảnh và mask khác kích thước.');
+          }
+          // Giải mã mask và đánh dấu canvas có thể hiển thị.
+          drawContours(mask);
+          // Cho phép bật lớp viền sau khi tạo xong.
+          contoursReady = true;
+          // Ẩn thông báo vì viền đã sẵn sàng.
+          status.hidden = true;
+        } catch (error) {
+          // Giữ nguyên ảnh và box nếu tệp mask không dùng được để vẽ viền.
+          status.textContent = error.message || 'Không đọc được viền từ mask.';
+          // Hiện cảnh báo khi không thể tạo viền.
+          status.hidden = false;
+        }
+      }
+      // Bật hoặc tắt lớp viền theo cả trạng thái dữ liệu và lựa chọn của người xem.
+      element('show-contours').disabled = !contoursReady;
+      // Áp dụng lại trạng thái các lớp phủ.
+      applyLayers();
+    }
+
+    // Bỏ các hộp bị lỗi toạ độ hoặc nằm hoàn toàn ngoài ảnh.
+    function validRegions(regions) {
+      // Lọc vùng theo bốn tọa độ chuẩn hóa trước khi dựng nút hoặc hộp.
+      return regions.filter(({ x, y, w, h }) =>
+        [x, y, w, h].every(Number.isFinite) && w > 0 && h > 0 &&
+        x < 1 && y < 1 && x + w > 0 && y + h > 0
+      );
+    }
+
+    // Gắn tên nguồn và số thứ tự để phân biệt các vật cùng tên lớp.
+    function populateCropOptions(boxes, segments) {
+      // Giữ hộp YOLO hợp lệ để khi cắt có thể tiếp tục vẽ nhãn.
+      photoBoxes = validRegions(boxes);
+      // Tạo một tuỳ chọn cho từng hộp YOLO hoặc bbox của segment.
+      cropRegions = [
+        ...photoBoxes.map((region, index) => ({ ...region, name: `YOLO ${index + 1} · ${region.label}` })),
+        ...validRegions(segments).map((region, index) => ({ ...region, name: `Panoptic ${index + 1} · ${region.label}` }))
+      ];
+      // Tuỳ chọn đầu tiên quay lại chế độ toàn ảnh.
+      const select = element('crop-object');
+      // Đặt lại trạng thái ban đầu khi chuyển ảnh.
+      select.replaceChildren(new Option('Chọn hộp YOLO hoặc segment', ''));
+      // Dùng văn bản thuần cho tên lớp và chỉ dùng chỉ số nội bộ làm giá trị.
+      cropRegions.forEach((region, index) => select.add(new Option(region.name, String(index))));
+    }
+
+    // Tính khung ảnh cắt từ hộp đã chọn, thêm 20% đệm quanh vật thể.
+    function cropBounds(region, width, height) {
+      // Đệm tối thiểu 4 pixel để còn một ít bối cảnh quanh vật rất nhỏ.
+      const padX = Math.max(4, region.w * width * 0.2);
+      // Chừa phần bối cảnh theo chiều dọc.
+      const padY = Math.max(4, region.h * height * 0.2);
+      // Giữ bốn cạnh ở bên trong ảnh và làm tròn ra ngoài để không cắt mất biên vật.
+      const left = Math.max(0, Math.floor(region.x * width - padX));
+      // Giữ mép trên trong ảnh.
+      const top = Math.max(0, Math.floor(region.y * height - padY));
+      // Giữ mép phải trong ảnh.
+      const right = Math.min(width, Math.ceil((region.x + region.w) * width + padX));
+      // Giữ mép dưới trong ảnh.
+      const bottom = Math.min(height, Math.ceil((region.y + region.h) * height + padY));
+      // Canvas cần gốc và kích thước theo pixel, không phải toạ độ chuẩn hoá.
+      return { left, top, width: right - left, height: bottom - top };
+    }
+
+    // Hiển thị một vùng cắt thật bằng cách chép đúng phần điểm ảnh vào canvas.
+    function renderCrop() {
+      // Đọc chỉ số vùng người dùng vừa chọn.
+      const choice = element('crop-object').value;
+      // Lấy khung hiển thị ảnh đã cắt.
+      const preview = element('crop-preview');
+      // Lấy nút đóng vùng cắt.
+      const reset = element('reset-crop');
+      // Nếu chưa chọn vật hoặc ảnh thiếu, giữ nội dung toàn ảnh như cũ.
+      reset.disabled = choice === '';
+      // Chỉ hiện ảnh cắt khi nguồn và vùng đã xác định.
+      preview.hidden = choice === '' || element('photo-stage').hidden;
+      // Dừng trước khi truy cập vùng chưa được chọn.
+      if (preview.hidden) return;
+      // Lấy hộp đã chọn và hệ toạ độ pixel của ảnh gốc.
+      const region = cropRegions[Number(choice)];
+      // Lấy ảnh hiển thị để kiểm tra kích thước hoặc lấy pixel cắt.
+      const photo = element('photo');
+      // Đổi vùng được chọn về đúng hệ pixel.
+      const bounds = cropBounds(region, photo.naturalWidth, photo.naturalHeight);
+      // Lấy gốc, chiều rộng và chiều cao của hình chữ nhật nguồn.
+      const { left, top, width, height } = bounds;
+      // Kích thước canvas khớp vùng cắt và giữ nguyên tỉ lệ gốc.
+      const cropped = element('crop-picture');
+      // Đặt đúng chiều rộng vùng cắt theo pixel.
+      cropped.width = width;
+      // Đặt đúng chiều cao vùng cắt theo pixel.
+      cropped.height = height;
+      // Lấy bộ vẽ để sao chép vùng ảnh.
+      const context = cropped.getContext('2d');
+      // Truyền hình chữ nhật nguồn để lấy pixel, không chỉ phóng toàn ảnh.
+      context.drawImage(photo, left, top, width, height, 0, 0, width, height);
+      // Nếu đang bật viền, cắt cùng vùng của canvas viền rồi chồng lên ảnh.
+      if (contoursReady && element('show-contours').checked) {
+        // Chồng đúng phần viền khớp với vùng cắt.
+        context.drawImage(element('contours'), left, top, width, height, 0, 0, width, height);
+      }
+      // Đổi hộp YOLO từ hệ toàn ảnh sang hệ toạ độ chuẩn hoá trong vùng cắt.
+      const croppedBoxes = photoBoxes.map((box) => ({
+        // Giữ tên lớp của hộp ban đầu.
+        label: box.label,
+        // Đổi gốc và tỷ lệ ngang của tọa độ x.
+        x: (box.x * photo.naturalWidth - left) / width,
+        // Đổi gốc và tỷ lệ dọc của tọa độ y.
+        y: (box.y * photo.naturalHeight - top) / height,
+        // Đổi chiều rộng hộp sang tỷ lệ của vùng cắt.
+        w: box.w * photo.naturalWidth / width,
+        // Đổi chiều cao hộp sang tỷ lệ của vùng cắt.
+        h: box.h * photo.naturalHeight / height
+      }));
+      // Bỏ hộp nằm ngoài vùng cắt và dùng cùng tuỳ chọn bật hộp YOLO.
+      const overlay = element('crop-boxes');
+      // Tôn trọng công tắc lớp hộp YOLO của người dùng.
+      overlay.hidden = !element('show-boxes').checked;
+      // Vẽ lại đúng các hộp YOLO thấy được trong vùng cắt.
+      drawOverlay(overlay, null, validRegions(croppedBoxes), false);
+      // Hiện tên vật thể và kích thước thật của vùng cắt để người xem đối chiếu.
+      element('crop-caption').textContent = `${region.name} · ${width} × ${height} px`;
+    }
+
+    // Chỉ mở tệp ảnh và mask do máy đang chạy công cụ cung cấp.
+    function safeImageUrl(value) {
+      // Xử lý trường hợp máy chủ báo ảnh thiếu.
+      if (typeof value !== 'string' || !value) return null;
+      // Đổi đường dẫn tương đối thành địa chỉ đầy đủ.
+      const url = new URL(value, window.location.origin);
+      // Từ chối ảnh trỏ qua địa chỉ ngoài.
+      return url.origin === window.location.origin ? url.href : null;
+    }
+
+    // Đổi nguồn ảnh và chỉ hiện khung sau khi tải thành công.
+    function setMedia(name, url, message, version) {
+      // Lấy phần tử ảnh hoặc mask cần cập nhật.
+      const image = element(name);
+      // Lấy khung chứa ảnh và lớp phủ.
+      const stage = element(`${name}-stage`);
+      // Lấy vùng hiển thị trạng thái tải.
+      const error = element(`${name}-error`);
+      // Ẩn ảnh cũ trong khi tải ảnh mới.
+      stage.hidden = true;
+      // Cho người dùng thấy trạng thái đang tải hoặc thiếu ảnh.
+      error.hidden = false;
+      // Hiện thông báo ứng với ảnh hiện tại.
+      error.textContent = message;
+      // Gỡ hàm tải xong của ảnh trước.
+      image.onload = null;
+      // Gỡ hàm xử lý lỗi của ảnh trước.
+      image.onerror = null;
+      // Xóa tham chiếu đến ảnh đã mở trước đó.
+      image.removeAttribute('src');
+      // Chỉ hiện link ảnh gốc khi đã có ảnh mới.
+      if (name === 'photo') element('original').hidden = true;
+      // Dừng khi ảnh hoặc mask thực sự thiếu.
+      if (!url) return;
+
+      // Chỉ hiện khung khi trình duyệt giải mã ảnh thành công.
+      image.onload = () => {
+        // Bỏ qua tải xong nếu người dùng đã chuyển sang ảnh khác.
+        if (version !== mediaVersion) return;
+        // Ẩn thông báo khi ảnh đã có.
+        error.hidden = true;
+        // Hiện ảnh cùng lớp phủ.
+        stage.hidden = false;
+        // Chỉ ảnh gốc có link mở riêng.
+        if (name === 'photo') {
+          // Cập nhật link đến ảnh vừa tải.
+          element('original').href = url;
+          // Bật link mở ảnh đầy đủ.
+          element('original').hidden = false;
+        }
+        // Có thể vẽ viền hoặc bật chọn vùng cắt ngay sau khi đọc được tệp.
+        updateInspectionTools();
+      };
+      // Báo riêng lỗi giải mã hoặc lỗi tải tệp ảnh.
+      image.onerror = () => {
+        // Không cập nhật báo lỗi cho một ứng viên cũ đã đóng.
+        if (version !== mediaVersion) return;
+        error.textContent = 'Không mở được tệp ảnh.';
+        // Vẫn cho dùng vùng cắt và lớp ảnh còn lại nếu chúng đã tải thành công.
+        updateInspectionTools();
+      };
+      // Bắt đầu tải tài nguyên từ máy chủ.
+      image.src = url;
+    }
+
+    // Lấy thông tin nguồn và lớp phủ theo mã ứng viên.
+    async function loadMedia(item) {
+      // Đánh dấu một lượt tải ảnh mới.
+      const version = ++mediaVersion;
+      // Xoá trạng thái viền và vật cắt của ảnh trước khi tải ảnh tiếp theo.
+      contoursReady = false;
+      populateCropOptions([], []);
+      element('contour-status').hidden = true;
+      // Dọn ảnh cũ và báo đang tải ảnh gốc.
+      setMedia('photo', null, 'Đang tải ảnh…', version);
+      // Dọn mask cũ và báo đang tải mask.
+      setMedia('mask', null, 'Đang tải mask…', version);
+      // Tạm khoá tính năng cần ảnh trong lúc chờ dữ liệu mới.
+      updateInspectionTools();
+      // Gỡ hộp YOLO của ứng viên trước.
+      drawOverlay(element('boxes'), element('photo-labels'), [], false);
+      // Gỡ hộp panoptic của ứng viên trước.
+      drawOverlay(element('segments'), element('mask-labels'), [], true);
+      // Bắt lỗi tại bước có thể không hoàn tất.
+      try {
+        // Lấy URL ảnh và các vùng đã chuẩn hóa.
+        const data = await json(`/api/item?id=${encodeURIComponent(item.id)}`);
+        // Bỏ qua tải xong nếu người dùng đã chuyển sang ảnh khác.
+        if (version !== mediaVersion) return;
+        // Kiểm tra đường dẫn ảnh gốc.
+        const photo = safeImageUrl(data.photo);
+        // Kiểm tra đường dẫn mask.
+        const mask = safeImageUrl(data.mask);
+        // Chuẩn bị danh sách vùng cắt trước sự kiện tải ảnh và báo tình trạng mask.
+        populateCropOptions(data.boxes, data.segments);
+        // Mở ảnh gốc nếu file tồn tại.
+        setMedia('photo', photo, photo ? 'Đang tải ảnh…' : 'Ảnh không có trong lô.', version);
+        // Mở mask nếu file tồn tại.
+        setMedia('mask', mask, mask ? 'Đang tải mask…' : 'Mask không có trong lô.', version);
+        // Vẽ các hộp YOLO lên ảnh.
+        drawOverlay(element('boxes'), element('photo-labels'), data.boxes, false);
+        // Vẽ hộp tham chiếu cho segment trên mask.
+        drawOverlay(element('segments'), element('mask-labels'), data.segments, true);
+      } catch (error) {
+        // Bỏ qua tải xong nếu người dùng đã chuyển sang ảnh khác.
+        if (version !== mediaVersion) return;
+        // Hiện lỗi tại khung ảnh.
+        setMedia('photo', null, error.message, version);
+        // Hiện cùng lỗi tại khung mask.
+        setMedia('mask', null, error.message, version);
+      }
+    }
+
+    // Chuyển cả ảnh, thông tin và biểu mẫu sang ứng viên được chọn.
+    function selectItem(id, force = false) {
+      // Tìm ứng viên theo mã nhận được từ hàng đợi.
+      const item = items.find((candidate) => candidate.id === id);
+      // Bỏ qua mã lạ hoặc thao tác mở lại không cần thiết.
+      if (!item || (activeId === id && !force)) return;
+      // Lưu mã ảnh hiện tại.
+      activeId = id;
+      // Đóng hướng dẫn chọn ảnh khi đã có ảnh.
+      element('empty').hidden = true;
+      // Hiện màn hình review.
+      element('review-panel').hidden = false;
+      // Đưa tên ảnh lên đầu.
+      element('image-id').textContent = item.image;
+      element('photo').alt = `Ảnh ${item.image}`;
+      // Nhắc loại nghi ngờ do validator đề xuất.
+      element('kind').textContent = `Ứng viên · ${typeName(item.type)} (${item.type})`;
+      // Hiện gợi ý từ candidates.json bằng văn bản thuần.
+      element('hint').textContent = item.hint;
+      // Ẩn vùng gợi ý khi chưa có nội dung.
+      element('hint').hidden = !item.hint;
+      // Mỗi ảnh mới bắt đầu ở tỷ lệ mặc định.
+      element('zoom').value = '100';
+      // Áp dụng lại trạng thái các lớp phủ.
+      applyLayers();
+      // Điền đúng dữ liệu review của ảnh hiện tại.
+      updateForm(item);
+      // Cập nhật dòng đang được chọn và nút điều hướng.
+      refreshQueue();
+      // Bắt đầu tải hình và lớp phủ của ảnh mới.
+      loadMedia(item);
+    }
+
+    // Đọc lại tiến độ do cả nhóm cập nhật.
+    async function refreshItems() {
+      // Lấy nút làm mới để khóa tạm khi đang tải.
+      const refresh = element('refresh');
+      const version = savedVersion;
+      // Tránh gửi nhiều yêu cầu làm mới cùng lúc.
+      refresh.disabled = true;
+      // Dọn lỗi của lần làm mới trước.
+      setNotice('');
+      // Bắt lỗi tại bước có thể không hoàn tất.
+      try {
+        // Lấy toàn bộ hàng đợi từ máy chủ.
+        const data = await json('/api/items');
+        if (version !== savedVersion) return false;
+        // Cập nhật dữ liệu đang giữ trong trình duyệt.
+        items = data.items;
+        // Tìm đối tượng đang mở bằng mã hiện tại.
+        const item = activeItem();
+        // Cập nhật dòng đang được chọn và nút điều hướng.
+        refreshQueue();
+        // Giữ nguyên ảnh đang mở nếu vẫn có trong danh sách.
+        if (item) {
+          // Cập nhật kết quả mới nếu người dùng không có bản nháp.
+          if (!drafts.has(item.id)) updateForm(item);
+        } else if (visible.length) {
+          // Mở mục đầu tiên phù hợp với bộ lọc.
+          selectItem(visible[0].id);
+        } else {
+          // Đặt lại mã ảnh khi không còn mục nào để mở.
+          activeId = null;
+          // Ẩn biểu mẫu nếu chưa có ứng viên đang chọn.
+          element('review-panel').hidden = true;
+          // Hiện gợi ý thao tác.
+          element('empty').hidden = false;
+          element('empty').textContent = items.length
+            ? 'Chọn một mục trong danh sách để xem ảnh.'
+            : 'Không có ứng viên trong lô này.';
+        }
+        // Báo đã có dữ liệu mới cho thao tác gọi lại.
+        return true;
+      } catch (error) {
+        // Dùng thông báo chung nếu người dùng đã chuyển ảnh.
+        setNotice(error.message);
+        // Chỉ cách thử lại khi trang chưa có ảnh.
+        if (activeId === null) element('empty').textContent = 'Chọn Làm mới tiến độ để thử lại.';
+        // Báo chưa thể làm mới dữ liệu.
+        return false;
+      } finally {
+        // Mở nút làm mới cả khi thành công lẫn khi gặp lỗi.
+        refresh.disabled = false;
+      }
+    }
+
+    function applyLayers() {
+      // Hiện box YOLO theo lựa chọn của người dùng.
+      element('boxes').hidden = !element('show-boxes').checked;
+      // Hiện hoặc ẩn phần mask.
+      element('mask-figure').hidden = !element('show-mask').checked;
+      // Viền chỉ hiển thị khi có mask hợp lệ và người xem bật công tắc.
+      element('contours').hidden = !contoursReady || !element('show-contours').checked;
+      // Đổi giá trị mức phóng to thành phần trăm CSS.
+      const zoom = `${element('zoom').value}%`;
+      // Đổi kích thước ảnh và lớp phủ cùng lúc.
+      element('photo-stage').style.width = zoom;
+      // Giữ mức phóng to của mask khớp với ảnh gốc.
+      element('mask-stage').style.width = zoom;
+      // Vùng cắt có tỉ lệ phóng và trạng thái bật lớp giống ảnh chính.
+      element('crop-stage').style.width = zoom;
+      // Cập nhật cửa sổ vùng cắt khi lựa chọn hoặc lớp phủ đổi.
+      renderCrop();
+    }
+
+    // Làm mới tiến độ khi bấm nút.
+    element('refresh').addEventListener('click', refreshItems);
+    // Lọc ngay trong lúc gõ từ khóa.
+    element('search').addEventListener('input', refreshQueue);
+    // Lọc lại khi đổi trạng thái.
+    element('filter').addEventListener('change', refreshQueue);
+    // Mở ứng viên liền trước trong danh sách đang lọc.
+    element('prev').addEventListener('click', () => {
+      // Xác định vị trí ảnh hiện tại trong danh sách đã lọc.
+      const index = visible.findIndex((item) => item.id === activeId);
+      // Chỉ lùi khi còn mục phía trước.
+      if (index > 0) selectItem(visible[index - 1].id);
+    });
+    // Mở ứng viên kế tiếp trong danh sách đang lọc.
+    element('next').addEventListener('click', () => {
+      // Xác định vị trí ảnh hiện tại trong danh sách đã lọc.
+      const index = visible.findIndex((item) => item.id === activeId);
+      // Chỉ tiến khi còn mục phía sau.
+      if (index + 1 < visible.length) selectItem(visible[index + 1].id);
+    });
+    // Đổi lớp hoặc mức phóng thì vẽ lại vùng cắt nếu đang mở.
+    for (const id of ['show-boxes', 'show-mask', 'show-contours', 'zoom']) {
+      // Áp dụng lại lớp phủ khi đổi công tắc hoặc phóng to.
+      element(id).addEventListener('change', applyLayers);
+    }
+    // Chọn vật để hiện vùng cắt, hoặc xóa lựa chọn để quay về toàn ảnh.
+    element('crop-object').addEventListener('change', renderCrop);
+    // Đóng vùng cắt khi bấm nút quay lại.
+    element('reset-crop').addEventListener('click', () => {
+      // Bỏ lựa chọn vật thể hiện tại.
+      element('crop-object').value = '';
+      // Cập nhật cửa sổ vùng cắt khi lựa chọn hoặc lớp phủ đổi.
+      renderCrop();
+    });
+    // Giữ lại loại lỗi đang chọn.
+    choices.addEventListener('change', rememberDraft);
+    // Giữ lại kết luận đang chọn.
+    verdict.addEventListener('change', rememberDraft);
+    // Giữ bản nháp khi nhập ghi chú.
+    note.addEventListener('input', rememberDraft);
+    // Nạp bản đã lưu khi xảy ra xung đột.
+    reload.addEventListener('click', async () => {
+      // Nhớ mã đang mở trước khi gọi API.
+      const id = activeId;
+      // Chỉ bỏ bản nháp sau khi lấy được kết quả mới.
+      if (await refreshItems()) {
+        // Bỏ bản nháp dựa trên dữ liệu cũ.
+        drafts.delete(id);
+        // Tìm đối tượng đang mở bằng mã hiện tại.
+        const item = activeItem();
+        if (item?.id === id) updateForm(item);
+      }
+    });
+
+    // Lưu kết quả khi người dùng gửi biểu mẫu.
+    element('review-form').addEventListener('submit', async (event) => {
+      // Giữ nguyên trang khi gửi API.
+      event.preventDefault();
+      // Tìm đối tượng đang mở bằng mã hiện tại.
+      const item = activeItem();
+      // Dừng khi chưa chọn ảnh hoặc một lượt lưu đang chạy.
+      if (!item || save.disabled) return;
+      // Chốt nội dung đang có trên màn hình.
+      rememberDraft();
+      // Lấy dữ liệu cần điền cho ứng viên này.
+      const draft = draftFor(item);
+      // Bỏ khoảng trắng hai đầu ghi chú.
+      const observation = draft.note.trim();
+      // Đếm theo ký tự Unicode để kiểm tra yêu cầu tối thiểu.
+      if ([...observation].length < 20) {
+        // Đặt thông báo lỗi trực tiếp trên ô.
+        note.setCustomValidity('Nhập ít nhất 20 ký tự mô tả điều bạn thấy.');
+        // Để trình duyệt chỉ người dùng về ô còn thiếu.
+        note.reportValidity();
+        // Dừng trước khi gửi một ghi chú không hợp lệ.
+        return;
+      }
+      // Khóa nút khi đang gửi để tránh lưu lặp.
+      save.disabled = true;
+      // Cho người dùng biết yêu cầu đang được xử lý.
+      setFlash('Đang lưu…');
+      // Bắt lỗi tại bước có thể không hoàn tất.
+      try {
+        // Gửi kết quả giám định cho máy chủ review chung.
+        const data = await json('/api/review', {
+          // Dùng POST cho yêu cầu thay đổi kết quả.
+          method: 'POST',
+          // Thông báo định dạng dữ liệu gửi lên.
+          headers: { 'Content-Type': 'application/json' },
+          // Mã hóa lựa chọn và ghi chú thành JSON.
+          body: JSON.stringify({
+            // Chỉ rõ ứng viên cần cập nhật.
+            id: item.id,
+            // Gửi loại lỗi sau khi người dùng xem ảnh.
+            type: draft.type,
+            // Gửi kết luận xác nhận hoặc loại.
+            verdict: draft.verdict,
+            // Gửi ghi chú đã bỏ khoảng trắng thừa.
+            note: observation,
+            // Đính kèm bản cũ để phát hiện người khác đã sửa.
+            previous: draft.previous
+          })
+        });
+        savedVersion++;
+        // Tìm đối tượng còn hiện trong danh sách mới nhất.
+        const updated = items.find((candidate) => candidate.id === item.id);
+        // Áp dụng kết quả được máy chủ xác nhận.
+        if (updated) updated.review = data.review;
+        const latest = drafts.get(item.id);
+        if (latest === draft) drafts.delete(item.id);
+        else if (latest) latest.previous = data.review;
+        // Cập nhật dòng đang được chọn và nút điều hướng.
+        refreshQueue();
+        // Chỉ cập nhật biểu mẫu nếu người dùng còn đang ở cùng ảnh.
+        if (activeId === item.id) {
+          // Hiển thị lại giá trị vừa được lưu.
+          updateForm(updated || item);
+          setFlash(latest && latest !== draft
+            ? 'Đã lưu bản trước. Bạn còn thay đổi mới.'
+            : 'Đã lưu vào nhật ký chung.');
+        }
+      } catch (error) {
+        // Chỉ cập nhật biểu mẫu nếu người dùng còn đang ở cùng ảnh.
+        if (activeId === item.id) {
+          // Hiện lỗi ngay tại biểu mẫu đang mở.
+          setFlash(error.message, true);
+          // Chỉ đưa nút nạp lại khi ứng viên đã bị người khác cập nhật.
+          reload.hidden = error.status !== 409;
+        } else {
+          // Dùng thông báo chung nếu người dùng đã chuyển ảnh.
+          setNotice(error.message);
+        }
+      } finally {
+        // Mở lại nút sau khi yêu cầu kết thúc.
+        save.disabled = false;
+      }
+    });
+
+    // Tải hàng đợi lần đầu khi mở trang.
+    refreshItems();
+  </script>
+</body>
+</html>
