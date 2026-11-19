@@ -2,7 +2,7 @@
 """Tạo gói bàn giao lô v2 từ delivery v1 và errors.json (Pha P4).
 
 Sử dụng:
-  python scripts/make_handover_v2.py --run runs/r2611
+  python tools/make_handover_v2.py --run runs/r2611
 """
 
 from __future__ import annotations

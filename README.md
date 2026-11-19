@@ -2,7 +2,7 @@
   <img src="docs/assets/hero.png" alt="Day 10 Lab: Bàn giao dataset và Truy vết" width="100%">
 </p>
 
-# Day 10 Lab — Nhóm SUN
+# Day 10 Lab — Nhóm 99 (SUN)
 
 > **Bài làm của nhóm SUN**
 > - Bảng phân công và theo dõi: [Google Sheet](https://docs.google.com/spreadsheets/d/1HsmcXXUwMi6U5iYGJdgPCHjrDczQjNvcDeE7YtsKsHc/edit?usp=drivesdk) · bản chụp trong repo: [docs/team_sheet/](docs/team_sheet/)

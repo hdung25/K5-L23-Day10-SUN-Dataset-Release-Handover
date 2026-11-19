@@ -8,6 +8,7 @@ Dùng Python 3.11 hoặc 3.12 (`py -3.12`): Python 3.15 nén mask PNG khác byte
 | `validator/validate.py` | lỗi luật (`--out`) + ứng viên đối chiếu (`--candidates`) | chuẩn |
 | `tools/view_candidates.py` | vẽ box + viền segment cho từng ứng viên (xuất ảnh PNG 2 khung bằng `--out` hoặc mở web review nhóm bằng `--share`) | Pillow / chuẩn |
 | `tools/build_handover.py` | dựng lô v2 từ `errors.json` (không sửa `delivery/`) | chuẩn (+ Pillow để mở kiểm ảnh wrong_hash) |
+| `tools/make_handover_v2.py` | bản dựng lô v2 thứ hai (Trang viết), để đối chiếu với `build_handover.py` | chuẩn |
 | `tools/trace_query.py` | `trace.json` từ ticket + changelog + jobs.csv | chuẩn |
 | `tools/sheet_snapshot.py` | chụp Google Sheet của nhóm vào `docs/team_sheet/` (mỗi tab một CSV) | openpyxl |
 
