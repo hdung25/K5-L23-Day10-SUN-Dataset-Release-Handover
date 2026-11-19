@@ -1,4 +1,4 @@
-# Nhóm <<XX>>
+# Nhóm SUN
 
 - Seed luyện tập: 2611 (`runs/r2611`, release_id v1 `lab250_d9d3c58cd7e6`)
 - Repo: https://github.com/hdung25/K5-L23-Day10-SUN-Dataset-Release-Handover
