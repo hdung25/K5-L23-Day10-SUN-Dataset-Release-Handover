@@ -1,8 +1,16 @@
 # Nhóm <<XX>>
 
 - Seed luyện tập: <<số>>
-- Repo: <<URL>>
+- Repo: https://github.com/hdung25/K5-L23-Day10-SUN-Dataset-Release-Handover (cần đổi tên theo mẫu `K5-L23-DAY10-NHOM<<XX>>-Release`)
+- Bảng phân công và theo dõi tiến độ: [Day 10 Lab - Phân công nhóm](https://docs.google.com/spreadsheets/d/1HsmcXXUwMi6U5iYGJdgPCHjrDczQjNvcDeE7YtsKsHc/edit?usp=drivesdk)
 
 | Họ và tên | MSHV | Tài khoản GitHub | Phần chính |
 |---|---|---|---|
-| <<>> | <<>> | <<>> | <<validator luật / đối chiếu / review / bàn giao / truy vết / bảo mật>> |
+| <<>> | <<>> | hdung25 | Trưởng nhóm: chuẩn bị (P0), quyết định + lineage (P3), tích hợp, đề ẩn, nộp bài |
+| Trieu Hoang Hieu | <<>> | hieuwewe123 | Validator luật: khung `validate.py`, lỗi file và detection (`missing_image`, `wrong_hash`, `invalid_class`, `bbox_out_of_bounds`, `duplicate_box`) |
+| <<>> | <<>> | ldmanh610 | Validator luật: metadata và panoptic (`scene_leak`, `guideline_mismatch`, `invalid_category_id`, `thing_overlap`); kiểm F1 trên nhiều seed và lô sạch |
+| Do Phuong Manh | <<>> | manhtotbung | Đối chiếu detection ↔ panoptic, sinh `candidates.json`, đo lô sạch và chọn ngưỡng |
+| Quốc Anh | <<>> | QuocAnh-bit | Công cụ xem ảnh, chia hàng đợi và gộp `review_log.csv`, truy vết ticket (`trace.json`) |
+| <<>> | <<>> | MTrang0702 | Bàn giao lô v2 (rework, manifest, label summary, truyvet, README, đóng gói), bảo mật (`security.md`) |
+
+Cả nhóm cùng xem ảnh ở Pha 2 và ở đề ẩn.
