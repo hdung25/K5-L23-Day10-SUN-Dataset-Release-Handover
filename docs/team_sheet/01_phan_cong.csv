@@ -34,6 +34,6 @@ P6-2,P6 Đề ẩn,"Tải de_an.zip, giải nén, chạy validator ra submission
 P6-3,P6 Đề ẩn,"Chia hàng đợi đề ẩn, cả nhóm xem ảnh, ghi submission/de_an/review_log.csv, chốt errors.json",Cả nhóm,QuocAnh-bit chia hàng đợi,submission/de_an/review_log.csv,CP6b (3:55),Đang làm,Chờ đề ẩn
 P6-4,P6 Đề ẩn,trace.json cho đề ẩn,QuocAnh-bit,,submission/de_an/trace.json,CP6b (3:55),Chưa làm,Chờ đề ẩn; tools/trace_query.py đã sẵn
 P6-5,P6 Nộp bài,"export_submission.py --run runs/r<seed>; check_handover.py không còn FAIL; commit, push, nộp link lên LMS",hdung25,,repo nhóm,CP6b (3:55),Chưa làm,Chờ đề ẩn
-C-1,Chung,"Mỗi người ít nhất 2 commit có nội dung, đúng thứ tự pha",Cả nhóm,,lịch sử git,Suốt buổi,Đang làm,MTrang0702 và manhtotbung cần thêm 1 commit có nội dung
-C-2,Chung,"Ghi prompt AI của mình vào submission/prompts.md: prompt, AI sai ở đâu, kiểm lại thế nào",Cả nhóm,hdung25 tổng hợp,submission/prompts.md,Suốt buổi,Đang làm,"Có dòng của Hiếu, Quốc Anh, Dũng"
+C-1,Chung,"Mỗi người ít nhất 2 commit có nội dung, đúng thứ tự pha",Cả nhóm,,lịch sử git,Suốt buổi,Đang làm,MTrang0702 đã đủ 2 commit (b961723 và test_handover); manhtotbung cần thêm 1 commit
+C-2,Chung,"Ghi prompt AI của mình vào submission/prompts.md: prompt, AI sai ở đâu, kiểm lại thế nào",Cả nhóm,hdung25 tổng hợp,submission/prompts.md,Suốt buổi,Đang làm,"Đã có đủ dòng của Hiếu, Quốc Anh, Dũng, Mạnh, Trang"
 C-3,Chung,"Ôn vấn đáp: giải thích 1 đoạn validator, 1 dòng trong review_log.csv, 1 con số trong README.txt của v2",Cả nhóm,,,Trước khi chấm,Đang làm,
