@@ -1,4 +1,4 @@
-# Báo cáo nhóm <<XX>>
+# Báo cáo nhóm SUN
 
 Seed luyện tập 2611, lô v1 `lab250_d9d3c58cd7e6`. Số liệu dưới đây chạy trên máy nhóm bằng `scripts/score_findings.py` (chỉ in F1 làm tròn một chữ số), không đọc `_private/`.
 
