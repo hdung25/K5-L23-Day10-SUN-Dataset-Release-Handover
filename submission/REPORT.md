@@ -38,8 +38,14 @@ Cả ba seed đều qua `check_handover.py` 17/17 và được nộp trong `subm
 
 ## 4. Hash chứng minh gì, không chứng minh gì?
 
-- **Chứng minh:** bytes của từng file trong v2 đúng như lúc đóng gói (manifest.csv + `.sha256` của zip), nên phát hiện được file bị sửa, hỏng hoặc thay sau khi bàn giao; `release_id` v1 (hash của manifest.json + metadata.json) không đổi chứng tỏ nhóm không ghi đè v1. Ảnh `000000017899` có hash trong manifest v1 sai nhưng ảnh mở được và đúng nội dung, nên giữ lại và ghi hash thật.
-- **Không chứng minh:** nhãn đúng (một box sai lớp vẫn có hash hợp lệ), ảnh phù hợp để dùng (khuôn mặt, bản quyền), ai đã tạo hay duyệt file, và cũng không chống được người có quyền sửa cả file lẫn manifest rồi tính lại hash: phải giữ `.sha256` ở chỗ riêng và có lineage.
+- **Chứng minh:** 
+  1. *Tính toàn vẹn mức byte (Bitwise Integrity):* Bytes của từng file trong v2 đúng như lúc đóng gói (`manifest.csv` + `.sha256` của zip), giúp phát hiện tức thì file bị sửa đổi, hỏng hóc hoặc thay thế sau khi bàn giao.
+  2. *Bảo toàn tính bất biến của bản gốc (Immutability):* Mã `release_id` v1 (hash của `manifest.json` + `metadata.json`) không đổi chứng tỏ nhóm không ghi đè lô v1. 
+  3. *Phân biệt lỗi file vs lỗi manifest:* Ảnh `000000017899` có hash trong manifest v1 sai nhưng khi mở ảnh kiểm tra thấy nội dung toàn vẹn, nên được giữ lại trong v2 và cập nhật mã hash thật.
+- **Không chứng minh:** 
+  1. *Tính đúng đắn về ngữ nghĩa (Semantic Validity):* Nhãn có đúng với thực tế hay không (một bounding box gán sai lớp hoặc vẽ lệch hoàn toàn vẫn tạo ra chuỗi hash hợp lệ).
+  2. *Chất lượng và tính pháp lý của dữ liệu:* Không chứng minh ảnh có phù hợp để huấn luyện hay không (vấn đề lộ khuôn mặt/PII, bản quyền hình ảnh, lóa sáng).
+  3. *Trách nhiệm và quyền hạn:* Không chứng minh ai đã tạo hay duyệt file, và không ngăn được người có đặc quyền sửa đồng thời cả file lẫn manifest rồi băm lại. Do đó bắt buộc phải lưu trữ `.sha256` độc lập và duy trì hệ thống Data Lineage.
 
 ## 5. Truy vết
 - **Nguồn thông tin từ ticket và changelog:**
@@ -56,7 +62,3 @@ Cả ba seed đều qua `check_handover.py` 17/17 và được nộp trong `subm
   - Nhóm tự động hóa bước này bằng script `tools/trace_query.py` (đọc trực tiếp `changelog.md`, `ticket.md`, `jobs.csv`, `metadata.json`, `classes.txt` và `labels/`).
 
 ## 6. Bug hoặc điểm chưa rõ trong lab
-
-- Windows: `scripts/run_lab.py` gọi script con không kèm `-X utf8`, in tiếng Việt ra console cp1252 nên lỗi `UnicodeEncodeError` và để lại `runs/r<seed>` dở dang. Cách tránh: đặt `$env:PYTHONUTF8=1` trước khi chạy, xoá thư mục dở rồi chạy lại.
-- Lệch tự nhiên của COCO trong pool luyện tập lặp lại ở mọi seed (3 ca lệch box/segment và 5 ca nhãn kép), nên nhóm dùng việc "lặp lại ở seed khác" làm một bằng chứng phụ khi ghi `rejected`.
-- Phiên bản Python đổi byte của mask (Quốc Anh phát hiện): Python 3.15 nén PNG bằng zlib-ng nên `mask_sha256`, manifest và `release_id` của lô tạo lại khác với lô của nhóm (tạo bằng Python 3.11/3.12). Khi tạo lại lô để kiểm (`run_lab.py`, `export_submission.py --import`) nên dùng Python 3.11 hoặc 3.12, ví dụ `py -3.12`.
