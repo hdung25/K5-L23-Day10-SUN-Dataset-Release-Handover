@@ -1,0 +1,164 @@
+{
+  "candidates": [
+    {
+      "image": "img_0009",
+      "seg_class": "person",
+      "segment_id": 10717577,
+      "area": 156010,
+      "seg_bbox": [
+        143,
+        66,
+        639,
+        480
+      ],
+      "type": "instance_merge",
+      "reason": "một segment nằm trong hai box cùng lớp",
+      "box_indexes": [
+        1,
+        2
+      ],
+      "shares": [
+        0.786,
+        0.384
+      ]
+    },
+    {
+      "image": "img_0047",
+      "seg_class": "cow",
+      "segment_id": 11762892,
+      "area": 15240,
+      "seg_bbox": [
+        283,
+        187,
+        563,
+        355
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'horse' trùng vị trí segment 'cow'",
+      "det_class": "horse",
+      "box_index": 0,
+      "iou": 0.99
+    },
+    {
+      "image": "img_0048",
+      "seg_class": "tv",
+      "segment_id": 9030677,
+      "area": 28512,
+      "seg_bbox": [
+        129,
+        30,
+        360,
+        184
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'laptop' trùng vị trí segment 'tv'",
+      "det_class": "laptop",
+      "box_index": 0,
+      "iou": 0.998
+    },
+    {
+      "image": "img_0108",
+      "seg_class": "person",
+      "segment_id": 1169903,
+      "area": 5636,
+      "seg_bbox": [
+        324,
+        148,
+        447,
+        289
+      ],
+      "type": "instance_merge",
+      "reason": "một segment nằm trong hai box cùng lớp",
+      "box_indexes": [
+        3,
+        0
+      ],
+      "shares": [
+        0.508,
+        0.492
+      ]
+    },
+    {
+      "image": "img_0118",
+      "seg_class": "chair",
+      "segment_id": 8063202,
+      "area": 7309,
+      "seg_bbox": [
+        47,
+        565,
+        177,
+        633
+      ],
+      "type": "bbox_drift",
+      "reason": "box cùng lớp lệch khỏi segment",
+      "box_index": 1,
+      "share_inside": 0.757,
+      "iou": 0.514
+    },
+    {
+      "image": "img_0122",
+      "seg_class": "person",
+      "segment_id": 12840487,
+      "area": 8267,
+      "seg_bbox": [
+        400,
+        219,
+        500,
+        370
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'baseball glove' trùng vị trí segment 'person'",
+      "det_class": "baseball glove",
+      "box_index": 1,
+      "iou": 0.995
+    },
+    {
+      "image": "img_0200",
+      "seg_class": "banana",
+      "segment_id": 15074414,
+      "area": 4798,
+      "seg_bbox": [
+        98,
+        98,
+        165,
+        200
+      ],
+      "type": "bbox_drift",
+      "reason": "box cùng lớp lệch khỏi segment",
+      "box_index": 3,
+      "share_inside": 0.862,
+      "iou": 0.581
+    },
+    {
+      "image": "img_0205",
+      "seg_class": "person",
+      "segment_id": 2839688,
+      "area": 17335,
+      "seg_bbox": [
+        101,
+        84,
+        314,
+        247
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'potted plant' trùng vị trí segment 'person'",
+      "det_class": "potted plant",
+      "box_index": 2,
+      "iou": 0.992
+    },
+    {
+      "image": "img_0212",
+      "seg_class": "umbrella",
+      "segment_id": 13883837,
+      "area": 41244,
+      "seg_bbox": [
+        68,
+        280,
+        338,
+        567
+      ],
+      "type": "missing_box",
+      "reason": "segment thing không có box nào cùng lớp"
+    }
+  ]
+}

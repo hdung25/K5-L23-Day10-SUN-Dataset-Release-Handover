@@ -1,0 +1,32 @@
+{
+  "errors": [
+    {
+      "type": "missing_image",
+      "target": "img_0039"
+    },
+    {
+      "type": "guideline_mismatch",
+      "target": "img_0118"
+    },
+    {
+      "type": "thing_overlap",
+      "target": "img_0197"
+    },
+    {
+      "type": "guideline_mismatch",
+      "target": "img_0216"
+    },
+    {
+      "type": "bbox_out_of_bounds",
+      "target": "img_0239"
+    },
+    {
+      "type": "wrong_hash",
+      "target": "img_0242"
+    },
+    {
+      "type": "scene_leak",
+      "target": "scene_732"
+    }
+  ]
+}

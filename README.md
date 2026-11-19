@@ -7,7 +7,7 @@
 > **Bài làm của nhóm SUN**
 > - Bảng phân công và theo dõi: [Google Sheet](https://docs.google.com/spreadsheets/d/1HsmcXXUwMi6U5iYGJdgPCHjrDczQjNvcDeE7YtsKsHc/edit?usp=drivesdk) · bản chụp trong repo: [docs/team_sheet/](docs/team_sheet/)
 > - Thành viên: [submission/TEAM.md](submission/TEAM.md) · báo cáo: [submission/REPORT.md](submission/REPORT.md) · dùng AI: [submission/prompts.md](submission/prompts.md)
-> - Bài nộp 3 seed luyện tập: [submission/r2611](submission/r2611), [submission/r101](submission/r101), [submission/r202](submission/r202) (mỗi seed `check_handover.py` 17/17 PASS, F1 tổng ≈ 1,0); đề ẩn: `submission/de_an/`
+> - Bài nộp 3 seed luyện tập: [submission/r2611](submission/r2611), [submission/r101](submission/r101), [submission/r202](submission/r202) (mỗi seed `check_handover.py` 17/17 PASS, F1 tổng ≈ 1,0); đề ẩn: [submission/de_an](submission/de_an) (bản chính = mã đề 03) và 4 mã đề đã làm [de_an_02](submission/de_an_02), [de_an_03](submission/de_an_03), [de_an_04](submission/de_an_04), [de_an_05](submission/de_an_05)
 > - Validator: [validator/validate.py](validator/validate.py) · công cụ và lệnh chạy (kể cả đề ẩn): [tools/README.md](tools/README.md)
 
 <p align="center">

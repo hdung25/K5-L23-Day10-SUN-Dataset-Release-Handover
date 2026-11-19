@@ -1,0 +1,111 @@
+{
+  "candidates": [
+    {
+      "image": "img_0014",
+      "seg_class": "motorcycle",
+      "segment_id": 12005807,
+      "area": 16076,
+      "seg_bbox": [
+        137,
+        110,
+        364,
+        264
+      ],
+      "type": "bbox_drift",
+      "reason": "box cùng lớp lệch khỏi segment",
+      "box_index": 0,
+      "share_inside": 0.932,
+      "iou": 0.71
+    },
+    {
+      "image": "img_0015",
+      "seg_class": "hot dog",
+      "segment_id": 15247058,
+      "area": 19219,
+      "seg_bbox": [
+        312,
+        49,
+        640,
+        179
+      ],
+      "type": "bbox_drift",
+      "reason": "box cùng lớp lệch khỏi segment",
+      "box_index": 2,
+      "share_inside": 0.312,
+      "iou": 0.162
+    },
+    {
+      "image": "img_0050",
+      "seg_class": "broccoli",
+      "segment_id": 6262721,
+      "area": 4226,
+      "seg_bbox": [
+        239,
+        312,
+        545,
+        466
+      ],
+      "type": "instance_merge",
+      "reason": "một segment nằm trong hai box cùng lớp",
+      "box_indexes": [
+        2,
+        5
+      ],
+      "shares": [
+        0.66,
+        0.34
+      ]
+    },
+    {
+      "image": "img_0076",
+      "seg_class": "bus",
+      "segment_id": 9064790,
+      "area": 52471,
+      "seg_bbox": [
+        0,
+        50,
+        342,
+        272
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'car' trùng vị trí segment 'bus'",
+      "det_class": "car",
+      "box_index": 0,
+      "iou": 0.999
+    },
+    {
+      "image": "img_0130",
+      "seg_class": "frisbee",
+      "segment_id": 9865943,
+      "area": 118415,
+      "seg_bbox": [
+        125,
+        36,
+        426,
+        640
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'elephant' trùng vị trí segment 'frisbee'",
+      "det_class": "elephant",
+      "box_index": 2,
+      "iou": 0.998
+    },
+    {
+      "image": "img_0174",
+      "seg_class": "handbag",
+      "segment_id": 7628221,
+      "area": 348,
+      "seg_bbox": [
+        312,
+        175,
+        336,
+        210
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'suitcase' trùng vị trí segment 'handbag'",
+      "det_class": "suitcase",
+      "box_index": 5,
+      "iou": 0.971
+    }
+  ]
+}

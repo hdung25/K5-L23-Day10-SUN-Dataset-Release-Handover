@@ -1,0 +1,207 @@
+{
+  "candidates": [
+    {
+      "image": "img_0057",
+      "seg_class": "truck",
+      "segment_id": 12904634,
+      "area": 25459,
+      "seg_bbox": [
+        402,
+        213,
+        637,
+        353
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'car' trùng vị trí segment 'truck'",
+      "det_class": "car",
+      "box_index": 0,
+      "iou": 0.994
+    },
+    {
+      "image": "img_0083",
+      "seg_class": "horse",
+      "segment_id": 3915445,
+      "area": 2364,
+      "seg_bbox": [
+        152,
+        332,
+        197,
+        423
+      ],
+      "type": "missing_box",
+      "reason": "segment thing không có box nào cùng lớp"
+    },
+    {
+      "image": "img_0084",
+      "seg_class": "knife",
+      "segment_id": 8714551,
+      "area": 9849,
+      "seg_bbox": [
+        93,
+        44,
+        499,
+        197
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'fork' trùng vị trí segment 'knife'",
+      "det_class": "fork",
+      "box_index": 1,
+      "iou": 0.997
+    },
+    {
+      "image": "img_0095",
+      "seg_class": "car",
+      "segment_id": 3080200,
+      "area": 44925,
+      "seg_bbox": [
+        39,
+        56,
+        334,
+        278
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'truck' trùng vị trí segment 'car'",
+      "det_class": "truck",
+      "box_index": 1,
+      "iou": 0.991
+    },
+    {
+      "image": "img_0129",
+      "seg_class": "person",
+      "segment_id": 5732501,
+      "area": 120339,
+      "seg_bbox": [
+        147,
+        28,
+        460,
+        629
+      ],
+      "type": "bbox_drift",
+      "reason": "box cùng lớp lệch khỏi segment",
+      "box_index": 1,
+      "share_inside": 0.968,
+      "iou": 0.718
+    },
+    {
+      "image": "img_0139",
+      "seg_class": "person",
+      "segment_id": 3899269,
+      "area": 35204,
+      "seg_bbox": [
+        118,
+        25,
+        376,
+        406
+      ],
+      "type": "bbox_drift",
+      "reason": "box cùng lớp lệch khỏi segment",
+      "box_index": 1,
+      "share_inside": 0.909,
+      "iou": 0.663
+    },
+    {
+      "image": "img_0157",
+      "seg_class": "car",
+      "segment_id": 6151635,
+      "area": 510,
+      "seg_bbox": [
+        247,
+        412,
+        305,
+        439
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'truck' trùng vị trí segment 'car'",
+      "det_class": "truck",
+      "box_index": 6,
+      "iou": 0.952
+    },
+    {
+      "image": "img_0162",
+      "seg_class": "parking meter",
+      "segment_id": 9569170,
+      "area": 6783,
+      "seg_bbox": [
+        107,
+        376,
+        200,
+        472
+      ],
+      "type": "bbox_drift",
+      "reason": "box cùng lớp lệch khỏi segment",
+      "box_index": 1,
+      "share_inside": 0.806,
+      "iou": 0.607
+    },
+    {
+      "image": "img_0193",
+      "seg_class": "horse",
+      "segment_id": 5878183,
+      "area": 2172,
+      "seg_bbox": [
+        325,
+        231,
+        400,
+        293
+      ],
+      "type": "instance_merge",
+      "reason": "một segment nằm trong hai box cùng lớp",
+      "box_indexes": [
+        1,
+        0
+      ],
+      "shares": [
+        0.52,
+        0.48
+      ]
+    },
+    {
+      "image": "img_0219",
+      "seg_class": "spoon",
+      "segment_id": 2249038,
+      "area": 2015,
+      "seg_bbox": [
+        0,
+        229,
+        134,
+        368
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'microwave' trùng vị trí segment 'spoon'",
+      "det_class": "microwave",
+      "box_index": 3,
+      "iou": 0.991
+    },
+    {
+      "image": "img_0235",
+      "seg_class": "cow",
+      "segment_id": 2332326,
+      "area": 19736,
+      "seg_bbox": [
+        224,
+        191,
+        639,
+        394
+      ],
+      "type": "missing_box",
+      "reason": "segment thing không có box nào cùng lớp"
+    },
+    {
+      "image": "img_0247",
+      "seg_class": "stop sign",
+      "segment_id": 7754303,
+      "area": 31959,
+      "seg_bbox": [
+        383,
+        3,
+        632,
+        193
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'sandwich' trùng vị trí segment 'stop sign'",
+      "det_class": "sandwich",
+      "box_index": 1,
+      "iou": 0.995
+    }
+  ]
+}

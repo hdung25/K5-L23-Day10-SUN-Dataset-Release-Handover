@@ -1,0 +1,8 @@
+image,type,verdict,note
+img_0014,bbox_drift,confirmed,"cậu bé mặc đồ xanh lá bay trên xe cào cào xanh: box motorcycle bị đẩy lên trên và sang phải, bánh trước bên trái và đáy bánh sau nằm ngoài box"
+img_0015,missing_box,confirmed,"khay có ba chiếc hot dog: chiếc phía sau (xúc xích với hành) có segment hot dog nhưng không có box riêng; box hot dog số 2 là nhãn kép với box sandwich của chiếc ở giữa"
+img_0050,instance_merge,confirmed,"bát mì xào có nhiều miếng súp lơ: một segment broccoli phủ cả miếng súp lơ bên phải lẫn miếng ở đáy bát bên trái, hai miếng bị gộp thành một"
+img_0076,class_swap,confirmed,"xe buýt trường học màu vàng chữ FIRST STUDENT đỗ bên đường, panoptic ghi bus đúng; box detection ghi car là sai"
+img_0130,category_swap,confirmed,"con voi xám đứng sau hàng rào cạnh bà cụ tóc bạc, detection ghi elephant đúng; panoptic ghi frisbee là sai"
+img_0174,class_swap,confirmed,"người đi bộ trên phố đeo chiếc túi xám có quai đeo vai, là túi xách tay: panoptic ghi handbag đúng, box detection ghi suitcase sai"
+img_0229,bbox_drift,rejected,"chồng thiết bị trên laptop: máy ghi âm trên cùng được COCO gán cả remote và cell phone (nhãn kép), box cell phone đó trùng box remote; hai điện thoại bên dưới đều có box khớp"

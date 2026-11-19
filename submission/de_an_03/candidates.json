@@ -1,0 +1,153 @@
+{
+  "candidates": [
+    {
+      "image": "img_0012",
+      "seg_class": "bench",
+      "segment_id": 10050906,
+      "area": 2513,
+      "seg_bbox": [
+        233,
+        236,
+        278,
+        421
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'chair' trùng vị trí segment 'bench'",
+      "det_class": "chair",
+      "box_index": 4,
+      "iou": 0.982
+    },
+    {
+      "image": "img_0026",
+      "seg_class": "zebra",
+      "segment_id": 11474770,
+      "area": 40406,
+      "seg_bbox": [
+        52,
+        30,
+        522,
+        394
+      ],
+      "type": "missing_box",
+      "reason": "segment thing không có box nào cùng lớp"
+    },
+    {
+      "image": "img_0027",
+      "seg_class": "elephant",
+      "segment_id": 1944881,
+      "area": 2651,
+      "seg_bbox": [
+        256,
+        111,
+        318,
+        174
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'traffic light' trùng vị trí segment 'elephant'",
+      "det_class": "traffic light",
+      "box_index": 0,
+      "iou": 0.973
+    },
+    {
+      "image": "img_0044",
+      "seg_class": "person",
+      "segment_id": 5991998,
+      "area": 8416,
+      "seg_bbox": [
+        166,
+        83,
+        347,
+        243
+      ],
+      "type": "bbox_drift",
+      "reason": "box cùng lớp lệch khỏi segment",
+      "box_index": 0,
+      "share_inside": 0.762,
+      "iou": 0.55
+    },
+    {
+      "image": "img_0061",
+      "seg_class": "truck",
+      "segment_id": 2321371,
+      "area": 20480,
+      "seg_bbox": [
+        0,
+        131,
+        639,
+        288
+      ],
+      "type": "instance_merge",
+      "reason": "một segment nằm trong hai box cùng lớp",
+      "box_indexes": [
+        2,
+        1
+      ],
+      "shares": [
+        0.901,
+        0.099
+      ]
+    },
+    {
+      "image": "img_0124",
+      "seg_class": "bird",
+      "segment_id": 3166103,
+      "area": 15639,
+      "seg_bbox": [
+        1,
+        18,
+        413,
+        250
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'kite' trùng vị trí segment 'bird'",
+      "det_class": "kite",
+      "box_index": 0,
+      "iou": 0.986
+    },
+    {
+      "image": "img_0191",
+      "seg_class": "person",
+      "segment_id": 13830730,
+      "area": 4564,
+      "seg_bbox": [
+        366,
+        277,
+        449,
+        383
+      ],
+      "type": "missing_box",
+      "reason": "segment thing không có box nào cùng lớp"
+    },
+    {
+      "image": "img_0213",
+      "seg_class": "zebra",
+      "segment_id": 14615838,
+      "area": 23033,
+      "seg_bbox": [
+        67,
+        5,
+        500,
+        329
+      ],
+      "type": "missing_box",
+      "reason": "segment thing không có box nào cùng lớp"
+    },
+    {
+      "image": "img_0217",
+      "seg_class": "apple",
+      "segment_id": 5857237,
+      "area": 62995,
+      "seg_bbox": [
+        67,
+        77,
+        325,
+        557
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'orange' trùng vị trí segment 'apple'",
+      "det_class": "orange",
+      "box_index": 0,
+      "iou": 0.997
+    }
+  ]
+}

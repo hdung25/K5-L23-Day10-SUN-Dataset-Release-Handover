@@ -62,3 +62,17 @@ Cả ba seed đều qua `check_handover.py` 17/17 và được nộp trong `subm
   - Nhóm tự động hóa bước này bằng script `tools/trace_query.py` (đọc trực tiếp `changelog.md`, `ticket.md`, `jobs.csv`, `metadata.json`, `classes.txt` và `labels/`).
 
 ## 6. Bug hoặc điểm chưa rõ trong lab
+
+## 7. Đề ẩn
+
+Nhóm làm 4 mã đề (de_an_02 đến de_an_05, tải từ thư mục đề của lớp), mỗi đề một thư mục `submission/de_an_XX/`; `submission/de_an/` là bản nộp chính, chép từ **de_an_03** vì mọi ca gán nhãn ở đề này đều nhìn rõ trên ảnh.
+
+| Đề | Lỗi luật | Ứng viên | Confirmed / rejected | Lớp đổi quy tắc | tier_a / tier_b / notify |
+|---|---|---|---|---|---|
+| de_an_02 | 10 | 13 | 12 / 1 | dog | 2 / 4 / 3 người |
+| de_an_03 | 10 | 9 | 9 / 0 | book | 3 / 3 / 5 người |
+| de_an_04 | 10 | 13 | 9 / 4 | cell phone | 3 / 5 / 6 người |
+| de_an_05 | 7 | 7 | 6 / 1 | fork | 2 / 4 / 5 người |
+
+- Ảnh đề ẩn bị lật ngang và nén lại, tên ảnh mã hoá; validator không phụ thuộc chiều ảnh hay tên nên chạy nguyên như lô luyện tập.
+- Các ca `rejected` đều là box COCO gán hai nhãn cho cùng một vật (chair + bench, suitcase + handbag, remote + cell phone) hoặc box đã được tính trong một ca lệch lớp. Sau khi xem ảnh, nhóm thêm vào validator luật bỏ box nhãn kép; chạy lại trên 3 seed luyện tập và lô sạch thì không mất ứng viên thật nào.

@@ -1,0 +1,10 @@
+image,type,verdict,note
+img_0012,category_swap,confirmed,"ghế gỗ tựa lưng có đệm xanh cạnh bàn ăn tròn, detection ghi chair đúng; panoptic ghi bench là sai"
+img_0026,missing_box,confirmed,"hai con ngựa vằn đứng chồng nhau: con phía sau thò đầu và lưng ra có segment zebra nhưng chỉ có một box zebra ôm con phía trước"
+img_0027,category_swap,confirmed,"đèn giao thông treo trên cột ở giữa phố đang bật đèn xanh, detection ghi traffic light đúng; panoptic ghi elephant sai"
+img_0044,bbox_drift,confirmed,"người lướt sóng áo đỏ dang tay: box person bị kéo xuống dưới, đầu và cánh tay trái nằm ngoài box còn phần dưới box trùm lên ván"
+img_0061,instance_merge,confirmed,"một segment truck phủ cả chiếc SUV bạc bên phải lẫn chiếc bán tải nhỏ ở mép trái ảnh, hai xe cách xa nhau bị gộp thành một"
+img_0124,class_swap,confirmed,"con mòng biển trắng xám sải cánh bay trên bãi biển, panoptic ghi bird đúng; box detection ghi kite là sai"
+img_0191,missing_box,confirmed,"người trượt tuyết áo đỏ quần be đang cúi người, có segment person nhưng chỉ có box skis dưới chân, không có box person"
+img_0213,missing_box,confirmed,"cận cảnh hai con ngựa vằn: con phía sau bên trái có segment zebra riêng nhưng box zebra duy nhất ôm con phía trước"
+img_0217,class_swap,confirmed,"đĩa có các lát táo vỏ đỏ xếp vòng quanh cá ngừ và dưa leo, panoptic ghi apple đúng; box detection ghi orange sai"
