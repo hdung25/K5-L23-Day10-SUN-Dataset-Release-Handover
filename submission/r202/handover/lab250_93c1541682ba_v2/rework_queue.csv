@@ -1,0 +1,12 @@
+image,type,annotator,reviewer,action
+000000001584,bbox_drift,A04,Q01,chỉnh box ôm sát vật
+000000006213,bbox_out_of_bounds,A02,Q03,kéo box về trong ảnh
+000000006471,class_swap,A02,Q03,sửa lớp của box theo ảnh
+000000008277,bbox_drift,A03,Q02,chỉnh box ôm sát vật
+000000011051,bbox_out_of_bounds,A03,Q02,kéo box về trong ảnh
+000000011511,missing_box,A03,Q02,thêm box cho vật bị thiếu
+000000015079,missing_box,A02,Q01,thêm box cho vật bị thiếu
+000000022755,class_swap,A01,Q02,sửa lớp của box theo ảnh
+000000023230,duplicate_box,A03,Q01,xoá box bị lặp
+000000023899,invalid_class,A03,Q01,sửa class_id ngoài 0-79
+000000024610,invalid_class,A03,Q01,sửa class_id ngoài 0-79

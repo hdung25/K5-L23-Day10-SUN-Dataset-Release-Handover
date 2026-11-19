@@ -1,0 +1,181 @@
+{
+  "candidates": [
+    {
+      "image": "000000000872",
+      "seg_class": "person",
+      "segment_id": 12234672,
+      "area": 47692,
+      "seg_bbox": [
+        164,
+        126,
+        429,
+        607
+      ],
+      "type": "missing_box",
+      "reason": "segment thing không có box nào cùng lớp"
+    },
+    {
+      "image": "000000001584",
+      "seg_class": "bus",
+      "segment_id": 3156032,
+      "area": 3718,
+      "seg_bbox": [
+        503,
+        316,
+        566,
+        386
+      ],
+      "type": "bbox_drift",
+      "reason": "box cùng lớp lệch khỏi segment",
+      "box_index": 13,
+      "share_inside": 0.781,
+      "iou": 0.545
+    },
+    {
+      "image": "000000001818",
+      "seg_class": "zebra",
+      "segment_id": 8092282,
+      "area": 120106,
+      "seg_bbox": [
+        0,
+        1,
+        638,
+        425
+      ],
+      "type": "missing_box",
+      "reason": "segment thing không có box nào cùng lớp"
+    },
+    {
+      "image": "000000006471",
+      "seg_class": "bench",
+      "segment_id": 3947065,
+      "area": 581,
+      "seg_bbox": [
+        138,
+        116,
+        192,
+        135
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'chair' trùng vị trí segment 'bench'",
+      "det_class": "chair",
+      "box_index": 8,
+      "iou": 0.986
+    },
+    {
+      "image": "000000008277",
+      "seg_class": "broccoli",
+      "segment_id": 1072752,
+      "area": 3095,
+      "seg_bbox": [
+        258,
+        227,
+        346,
+        298
+      ],
+      "type": "bbox_drift",
+      "reason": "box cùng lớp lệch khỏi segment",
+      "box_index": 11,
+      "share_inside": 0.923,
+      "iou": 0.712
+    },
+    {
+      "image": "000000011511",
+      "seg_class": "person",
+      "segment_id": 4011052,
+      "area": 2685,
+      "seg_bbox": [
+        140,
+        32,
+        190,
+        172
+      ],
+      "type": "missing_box",
+      "reason": "segment thing không có box nào cùng lớp"
+    },
+    {
+      "image": "000000012748",
+      "seg_class": "person",
+      "segment_id": 4079972,
+      "area": 56935,
+      "seg_bbox": [
+        221,
+        139,
+        480,
+        632
+      ],
+      "type": "missing_box",
+      "reason": "segment thing không có box nào cùng lớp"
+    },
+    {
+      "image": "000000013659",
+      "seg_class": "tv",
+      "segment_id": 8351070,
+      "area": 6729,
+      "seg_bbox": [
+        54,
+        349,
+        198,
+        461
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'laptop' trùng vị trí segment 'tv'",
+      "det_class": "laptop",
+      "box_index": 11,
+      "iou": 0.98
+    },
+    {
+      "image": "000000015079",
+      "seg_class": "sandwich",
+      "segment_id": 4285299,
+      "area": 35865,
+      "seg_bbox": [
+        203,
+        8,
+        477,
+        223
+      ],
+      "type": "missing_box",
+      "reason": "segment thing không có box nào cùng lớp"
+    },
+    {
+      "image": "000000020059",
+      "seg_class": "zebra",
+      "segment_id": 6711140,
+      "area": 17664,
+      "seg_bbox": [
+        110,
+        185,
+        507,
+        306
+      ],
+      "type": "instance_merge",
+      "reason": "một segment nằm trong hai box cùng lớp",
+      "box_indexes": [
+        1,
+        0
+      ],
+      "shares": [
+        0.608,
+        0.392
+      ]
+    },
+    {
+      "image": "000000022755",
+      "seg_class": "bus",
+      "segment_id": 1257270,
+      "area": 13577,
+      "seg_bbox": [
+        237,
+        189,
+        376,
+        331
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'truck' trùng vị trí segment 'bus'",
+      "det_class": "truck",
+      "box_index": 3,
+      "iou": 0.993
+    }
+  ]
+}

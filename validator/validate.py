@@ -213,6 +213,18 @@ def cross_check(image, boxes, classes, annotation, categories, segments, width, 
     """
     dets = [{"index": i, "name": classes.get(box[0], "?"), "rect": box_pixels(box, width, height)}
             for i, box in enumerate(boxes)]
+    # A box is "owned" by a segment of its class that sits fully inside it and fills it
+    # reasonably (IoU >= 0.5). An owned box already belongs to another object.
+    owner = {}
+    for info in annotation["segments_info"]:
+        category = categories.get(info["category_id"])
+        indices = segments.get(info["id"])
+        if category is None or not category["isthing"] or info.get("iscrowd") or not indices:
+            continue
+        bbox = pixel_bbox(indices, width)
+        for d in dets:
+            if d["name"] == category["name"] and iou(bbox, d["rect"]) >= 0.5                     and share_inside(indices, width, d["rect"]) >= SHARE_OK:
+                owner.setdefault(d["index"], info["id"])
     candidates = []
     for info in annotation["segments_info"]:
         category = categories.get(info["category_id"])
@@ -244,7 +256,8 @@ def cross_check(image, boxes, classes, annotation, categories, segments, width, 
         # 2. one segment spread over two boxes of its class: instance_merge.
         #    Either both boxes hold a real part, or the pixels that leave the first box all
         #    land in a second same-class box (two objects relabelled as one segment).
-        if len(same) >= 2 and (same[1][0] >= MERGE_SHARE or (
+        free = [t for t in same if owner.get(t[2]["index"], info["id"]) == info["id"]]
+        if len(same) >= 2 and owner.get(same[1][2]["index"], info["id"]) == info["id"] and (same[1][0] >= MERGE_SHARE or (
                 same[1][0] >= MERGE_MIN_PART
                 and share_inside_any(indices, width, [same[0][2]["rect"], same[1][2]["rect"]]) >= SHARE_OK)):
             candidates.append({**base, "type": "instance_merge",
@@ -252,12 +265,13 @@ def cross_check(image, boxes, classes, annotation, categories, segments, width, 
                                "box_indexes": [same[0][2]["index"], same[1][2]["index"]],
                                "shares": [round(same[0][0], 3), round(same[1][0], 3)]})
             continue
-        # 3. a same-class box near the segment but pixels leak out: bbox_drift
-        if same and (same[0][0] > 0 or best_same_iou > 0):
+        # 3. a free same-class box near the segment but pixels leak out: bbox_drift.
+        #    Boxes owned by another object do not count: then this object has no box.
+        if free and (free[0][0] > 0 or free[0][1] > 0):
             candidates.append({**base, "type": "bbox_drift",
                                "reason": "box cùng lớp lệch khỏi segment",
-                               "box_index": same[0][2]["index"], "share_inside": round(same[0][0], 3),
-                               "iou": round(same[0][1], 3)})
+                               "box_index": free[0][2]["index"], "share_inside": round(free[0][0], 3),
+                               "iou": round(free[0][1], 3)})
             continue
         # 4. no box of this class around the segment: missing_box
         candidates.append({**base, "type": "missing_box",

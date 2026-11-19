@@ -4,12 +4,16 @@ Seed luyện tập 2611, lô v1 `lab250_d9d3c58cd7e6`. Số liệu dưới đây
 
 ## 1. Số liệu luyện tập
 
-| Lô | F1 lỗi luật | F1 lỗi gán nhãn (cross_check_review) | F1 tổng | Ghi chú |
-|---|---|---|---|---|
-| r2611 (seed nhóm) | ≈ 1,0 | ≈ 0,9 | ≈ 1,0 | sau khi xem ảnh 9 ứng viên |
-| r101 (seed thêm) | ≈ 1,0 | chưa review | | chỉ kiểm luật |
-| r202 (seed thêm) | ≈ 1,0 | chưa review | | chỉ kiểm luật |
-| clean (`--no-faults`, 50 ảnh calib) | 0 lỗi luật báo ra | 0 ứng viên | | không báo thừa |
+| Lô | F1 lỗi luật | F1 lỗi gán nhãn (cross_check_review) | F1 tổng | Hàng đợi review | QC v1 |
+|---|---|---|---|---|---|
+| r2611 (seed nhóm) | ≈ 1,0 | ≈ 0,9 | ≈ 1,0 | 9 ảnh (6 confirmed / 3 rejected) | 15/250 = 6,0% → HOLD |
+| r101 | ≈ 1,0 | ≈ 0,9 | ≈ 1,0 | 8 ảnh (5 / 3) | 19/250 = 7,6% → HOLD |
+| r202 | ≈ 1,0 | ≈ 0,9 | ≈ 1,0 | 11 ảnh (8 / 3) | 21/250 = 8,4% → HOLD |
+| clean (`--no-faults`, 50 ảnh calib) | 0 lỗi luật báo ra | 0 ứng viên | | 0 | |
+
+Cả ba seed đều qua `check_handover.py` 17/17 và được nộp trong `submission/r2611`, `submission/r101`, `submission/r202`.
+
+**Thử trước đề ẩn.** Đề ẩn đổi tên ảnh, ghi lại file và có thể đổi mức lỗi, nên nhóm tự tạo lô kiểu đó bằng `inject_release.py --opaque` (o301, mức mặc định) và `--opaque --profile` với mức khó hơn mặc định (h302, h303: box lệch chỉ 6–15% thay vì 12–30%, 100% đổi sang lớp dễ nhầm, vật nhỏ tới 400 pixel, nhiều lỗi gán nhãn hơn). Validator giữ F1 lỗi luật ≈ 1,0 trên cả ba lô. Lô h302 review đủ 15 ảnh trong khoảng 15 phút: F1 lỗi gán nhãn ≈ 0,9, F1 tổng ≈ 1,0.
 
 - Truy vết trên cả 3 seed: tier_a ≈ 1,0 · tier_b ≈ 1,0 · notify ≈ 1,0.
 - Số ứng viên trên lô sạch: **0**. Hàng đợi trên seed 2611: **9 ảnh** (6 confirmed, 3 rejected); r101: 8 ảnh; r202: 11 ảnh.

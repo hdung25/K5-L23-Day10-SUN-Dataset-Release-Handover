@@ -11,11 +11,8 @@
         429,
         607
       ],
-      "type": "bbox_drift",
-      "reason": "box cùng lớp lệch khỏi segment",
-      "box_index": 1,
-      "share_inside": 0.957,
-      "iou": 0.781
+      "type": "missing_box",
+      "reason": "segment thing không có box nào cùng lớp"
     },
     {
       "image": "000000001675",
@@ -45,11 +42,8 @@
         638,
         425
       ],
-      "type": "bbox_drift",
-      "reason": "box cùng lớp lệch khỏi segment",
-      "box_index": 0,
-      "share_inside": 0.504,
-      "iou": 0.718
+      "type": "missing_box",
+      "reason": "segment thing không có box nào cùng lớp"
     },
     {
       "image": "000000005001",
@@ -93,11 +87,8 @@
         480,
         632
       ],
-      "type": "bbox_drift",
-      "reason": "box cùng lớp lệch khỏi segment",
-      "box_index": 1,
-      "share_inside": 0.94,
-      "iou": 0.887
+      "type": "missing_box",
+      "reason": "segment thing không có box nào cùng lớp"
     },
     {
       "image": "000000018770",

@@ -1,0 +1,133 @@
+{
+  "candidates": [
+    {
+      "image": "000000000872",
+      "seg_class": "person",
+      "segment_id": 12234672,
+      "area": 47692,
+      "seg_bbox": [
+        164,
+        126,
+        429,
+        607
+      ],
+      "type": "missing_box",
+      "reason": "segment thing không có box nào cùng lớp"
+    },
+    {
+      "image": "000000001818",
+      "seg_class": "zebra",
+      "segment_id": 8092282,
+      "area": 120106,
+      "seg_bbox": [
+        0,
+        1,
+        638,
+        425
+      ],
+      "type": "missing_box",
+      "reason": "segment thing không có box nào cùng lớp"
+    },
+    {
+      "image": "000000006213",
+      "seg_class": "sink",
+      "segment_id": 9155032,
+      "area": 2459,
+      "seg_bbox": [
+        407,
+        253,
+        640,
+        313
+      ],
+      "type": "instance_merge",
+      "reason": "một segment nằm trong hai box cùng lớp",
+      "box_indexes": [
+        0,
+        1
+      ],
+      "shares": [
+        0.698,
+        0.302
+      ]
+    },
+    {
+      "image": "000000010583",
+      "seg_class": "sandwich",
+      "segment_id": 6193859,
+      "area": 21581,
+      "seg_bbox": [
+        221,
+        64,
+        440,
+        210
+      ],
+      "type": "missing_box",
+      "reason": "segment thing không có box nào cùng lớp"
+    },
+    {
+      "image": "000000012670",
+      "seg_class": "handbag",
+      "segment_id": 4204834,
+      "area": 1677,
+      "seg_bbox": [
+        0,
+        217,
+        52,
+        276
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'backpack' trùng vị trí segment 'handbag'",
+      "det_class": "backpack",
+      "box_index": 16,
+      "iou": 0.985
+    },
+    {
+      "image": "000000012748",
+      "seg_class": "person",
+      "segment_id": 4079972,
+      "area": 56935,
+      "seg_bbox": [
+        221,
+        139,
+        480,
+        632
+      ],
+      "type": "missing_box",
+      "reason": "segment thing không có box nào cùng lớp"
+    },
+    {
+      "image": "000000017207",
+      "seg_class": "motorcycle",
+      "segment_id": 4213837,
+      "area": 1069,
+      "seg_bbox": [
+        0,
+        235,
+        25,
+        303
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'cup' trùng vị trí segment 'motorcycle'",
+      "det_class": "cup",
+      "box_index": 4,
+      "iou": 0.972
+    },
+    {
+      "image": "000000018575",
+      "seg_class": "cup",
+      "segment_id": 5202285,
+      "area": 68001,
+      "seg_bbox": [
+        318,
+        163,
+        637,
+        470
+      ],
+      "type": "class_swap|category_swap",
+      "reason": "box 'bowl' trùng vị trí segment 'cup'",
+      "det_class": "bowl",
+      "box_index": 5,
+      "iou": 0.998
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+image,type,verdict,note
+000000000872,missing_box,rejected,"hai cầu thủ bóng chày chồng lên nhau, box person chỉ hụt mũi giày; giống hệt ở seed 2611 và 101, lệch sẵn có của COCO"
+000000001584,bbox_drift,confirmed,"xe buýt tối màu phía sau xe buýt hai tầng đỏ: phần đầu xe lộ ra bên trái nằm ngoài box bus, box bị dịch sang phải"
+000000001818,missing_box,rejected,"ngựa vằn mẹ phủ gần hết khung hình cạnh con non; lặp lại ở seed 2611 và 101 nên là lệch sẵn có của COCO"
+000000006471,class_swap,confirmed,"băng ghế dài trong khu dự bị phía sau sân bóng chày, panoptic ghi bench đúng; box detection ghi chair là sai"
+000000008277,bbox_drift,confirmed,"hộp nhựa đen đựng súp lơ xanh: một miếng súp lơ có segment lấn ra ngoài phía trên bên trái box broccoli của nó, box bị lệch"
+000000011511,missing_box,confirmed,"người đội mũ trùm áo đen đứng nép sau cột đèn bên trái tượng, có segment person rõ ràng nhưng không có box person nào"
+000000012748,missing_box,rejected,"người đàn ông bế em bé cạnh con ngựa, đầu nhô khỏi box; lặp lại ở seed 2611 và 101, lệch sẵn có của COCO"
+000000013659,category_swap,confirmed,"laptop nhỏ màn hình xanh trên bàn làm việc, người đang gõ phím; detection ghi laptop đúng, panoptic ghi tv sai"
+000000015079,missing_box,confirmed,"đĩa có hai nửa bánh mì kẹp mứt: nửa phía sau có segment sandwich nhưng box sandwich duy nhất ôm nửa phía trước, nửa sau không có box"
+000000020059,instance_merge,confirmed,"hai con ngựa vằn đang gặm cỏ cách xa nhau, một segment zebra phủ cả hai con nên hai vật bị gộp thành một"
+000000022755,class_swap,confirmed,"xe buýt trường học màu vàng phản chiếu trong gương chiếu hậu, panoptic ghi bus đúng; box detection ghi truck sai"

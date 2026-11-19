@@ -1,0 +1,9 @@
+image,type,verdict,note
+000000000872,missing_box,rejected,"hai cầu thủ bóng chày chồng lên nhau, box person chỉ hụt mũi giày; ca này giống hệt ở seed 2611 và 202 nên là lệch sẵn có của COCO"
+000000001818,missing_box,rejected,"ngựa vằn mẹ phủ gần hết khung hình cạnh con non, box zebra chỉ bao bên phải; lặp lại ở seed 2611 và 202, lệch sẵn có của COCO"
+000000006213,instance_merge,confirmed,"phòng tắm có hai bồn rửa trên cùng một bệ gỗ, một segment sink phủ cả bồn trái lẫn bồn phải, hai bồn bị gộp thành một segment"
+000000010583,missing_box,confirmed,"món thịt sốt có phần lát cà chua và hành ở trên cùng: segment sandwich riêng cho phần này nhưng box sandwich duy nhất chỉ ôm phần dưới, phần trên không có box"
+000000012670,category_swap,confirmed,"túi màu xanh đen đeo trên lưng có hai quai vắt qua vai người trong đám đông, là ba lô: detection ghi backpack đúng, panoptic ghi handbag sai"
+000000012748,missing_box,rejected,"người đàn ông bế em bé cạnh con ngựa, đầu nhô khỏi box person; lặp lại ở seed 2611 và 202 nên là lệch sẵn có của COCO"
+000000017207,class_swap,confirmed,"xe máy bị che một phần ở mép trái ảnh sau xe buýt vàng, panoptic ghi motorcycle đúng; box detection ghi cup là sai"
+000000018575,category_swap,confirmed,"đĩa sứ trắng đựng salad, cà chua, chanh và hũ sốt, detection ghi bowl hợp lý; panoptic ghi cup là sai"
